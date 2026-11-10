@@ -18,9 +18,19 @@ export const Runner = ({ rows, settings, onUpdate }) => {
   const [failOpen, setFailOpen] = useState(false);
   const [checked, setChecked] = useState({});
   const cooldown = useRef(0);
-  const row = rows[idx];
-  const high = row.amountPaise >= settings.highValuePaise;
-  const ready = row.status === "pending" && (!high || checked[row.id]);
+
+  if (!rows || rows.length === 0) {
+    return (
+      <div className="panel p-8 text-center text-muted-foreground font-mono text-sm">
+        No recipients in this view.
+      </div>
+    );
+  }
+
+  const safeIdx = Math.min(Math.max(0, idx), rows.length - 1);
+  const row = rows[safeIdx];
+  const high = row ? row.amountPaise >= settings.highValuePaise : false;
+  const ready = row ? row.status === "pending" && (!high || checked[row.id]) : false;
 
   const doneCount = rows.filter((r) => r.status !== "pending").length;
   const progressPct = rows.length > 0 ? Math.round((doneCount / rows.length) * 100) : 0;
