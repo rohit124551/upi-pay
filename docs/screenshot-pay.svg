@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="100%" height="100%">
+  <defs>
+    <linearGradient id="payBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#060911" />
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F97316" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="saffronP" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFA133" />
+      <stop offset="100%" stop-color="#F17A21" />
+    </linearGradient>
+    <linearGradient id="emeraldP" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#088B45" />
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="620" fill="url(#payBg)" />
+
+  <!-- Navbar -->
+  <rect width="960" height="54" fill="#0D131F" stroke="#1F2937" stroke-width="1" />
+  
+  <!-- Browser Window Dots -->
+  <g transform="translate(24, 21)">
+    <circle cx="0" cy="0" r="4.5" fill="#EF4444" />
+    <circle cx="15" cy="0" r="4.5" fill="#F59E0B" />
+    <circle cx="30" cy="0" r="4.5" fill="#10B981" />
+  </g>
+
+  <!-- Brand Logo & Title in Navbar -->
+  <g transform="translate(80, 10)">
+    <rect x="0" y="0" width="34" height="34" rx="8" fill="#161F30" stroke="#334155" />
+    <g transform="translate(4, 3) scale(0.48)">
+      <path d="M18.8 6.2C19.8 4.2 22.4 3.6 24.2 4.9L39.8 16.5C41.8 18 42.4 20.8 41.2 22.9L22.2 56.4C21.1 58.4 18.5 59 16.7 57.7L8.8 51.8C6.8 50.3 6.3 47.5 7.5 45.4L22.6 18.6C23.1 17.7 22.8 16.6 22 16L18.8 13.6C17 12.3 16.6 9.8 17.8 7.9L18.8 6.2Z" fill="url(#saffronP)" />
+      <path d="M32.8 6.2C33.8 4.2 36.4 3.6 38.2 4.9L49.8 13.6C51.6 15 52 17.5 50.8 19.5L34.4 48.6C33.2 50.7 30.6 51.3 28.8 50L20.8 44.1C18.8 42.6 18.3 39.8 19.5 37.7L36.6 7.5C36.9 7 36.6 6.4 36 6L32.8 6.2Z" fill="url(#emeraldP)" />
+    </g>
+    <text x="44" y="23" font-family="-apple-system, sans-serif" font-size="18" font-weight="900">
+      <tspan fill="url(#saffronP)">UPI</tspan><tspan fill="url(#emeraldP)" dx="3">Pay</tspan>
+      <tspan fill="#64748B" font-size="11" font-weight="500" dx="8">Terminal</tspan>
+    </text>
+  </g>
+  <g transform="translate(730, 15)">
+    <rect x="0" width="95" height="26" rx="6" fill="#1E293B" stroke="#334155" />
+    <text x="47" y="17" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0" text-anchor="middle">Step 3: Pay</text>
+    <text x="125" y="17" font-family="-apple-system, sans-serif" font-size="11" fill="#64748B">Review</text>
+    <text x="180" y="17" font-family="-apple-system, sans-serif" font-size="11" fill="#64748B">Reset</text>
+  </g>
+
+  <!-- Title section -->
+  <g transform="translate(40, 75)">
+    <text x="0" y="14" font-family="monospace" font-size="11" font-weight="700" fill="#10B981" letter-spacing="1">STEP 3 · RUNNER &amp; LIVE STATUS</text>
+    <text x="0" y="44" font-family="-apple-system, sans-serif" font-size="28" font-weight="800" fill="#F8FAFC">Pay one at a time</text>
+    <text x="0" y="66" font-family="-apple-system, sans-serif" font-size="13" fill="#94A3B8">Payments up to ₹1,000 can go via UPI Lite wallet. Scan individual QR codes and confirm in your UPI app.</text>
+  </g>
+
+  <!-- Group Tabs -->
+  <g transform="translate(40, 160)">
+    <rect width="180" height="42" rx="8" fill="#065F46" fill-opacity="0.25" stroke="#10B981" stroke-opacity="0.5" />
+    <text x="14" y="20" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#34D399">Everyone</text>
+    <text x="14" y="34" font-family="monospace" font-size="10" fill="#94A3B8">12/15 done · ₹32,450</text>
+
+    <rect x="190" width="180" height="42" rx="8" fill="#111827" stroke="#1F2937" />
+    <text x="204" y="20" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#C084FC">⚡ UPI Lite Group</text>
+    <text x="204" y="34" font-family="monospace" font-size="10" fill="#94A3B8">8/8 done · ₹4,200</text>
+
+    <rect x="380" width="180" height="42" rx="8" fill="#111827" stroke="#1F2937" />
+    <text x="394" y="20" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#E2E8F0">Regular UPI</text>
+    <text x="394" y="34" font-family="monospace" font-size="10" fill="#94A3B8">4/7 done · ₹28,250</text>
+  </g>
+
+  <!-- Main Runner Panel with Visual Linear Progress Bar -->
+  <g transform="translate(40, 218)">
+    <rect width="880" height="260" rx="12" fill="#0D131F" stroke="#1E293B" stroke-width="1.5" />
+
+    <!-- Linear Progress Bar -->
+    <rect x="0" y="0" width="880" height="5" rx="2" fill="#1E293B" />
+    <rect x="0" y="0" width="704" height="5" rx="2" fill="url(#barGrad)" />
+
+    <!-- Runner Header -->
+    <g transform="translate(24, 25)">
+      <text x="0" y="10" font-family="monospace" font-size="12" fill="#94A3B8">
+        Recipient 13 of 15 · <tspan fill="#34D399" font-weight="bold">12/15 done (80%)</tspan>
+      </text>
+      <g transform="translate(790, -5)">
+        <rect x="0" y="0" width="28" height="24" rx="4" fill="#1E293B" stroke="#334155" />
+        <text x="14" y="16" font-family="monospace" font-size="12" fill="#E2E8F0" text-anchor="middle">←</text>
+        <rect x="34" y="0" width="28" height="24" rx="4" fill="#1E293B" stroke="#334155" />
+        <text x="48" y="16" font-family="monospace" font-size="12" fill="#E2E8F0" text-anchor="middle">→</text>
+      </g>
+    </g>
+
+    <!-- Center Pay Target Details -->
+    <g transform="translate(30, 65)">
+      <!-- Left side: Amounts and Details -->
+      <g transform="translate(0, 10)">
+        <text x="0" y="35" font-family="monospace" font-size="44" font-weight="bold" fill="#FFFFFF">₹4,250</text>
+        <text x="0" y="68" font-family="-apple-system, sans-serif" font-size="18" font-weight="bold" fill="#F1F5F9">Rahul Verma</text>
+        <text x="0" y="92" font-family="monospace" font-size="14" fill="#34D399">rahul.verma42@okaxis</text>
+        <text x="0" y="112" font-family="-apple-system, sans-serif" font-size="12" fill="#94A3B8">Merged from 2 lines: ₹3,500 + ₹750 · Note: Team stipend</text>
+      </g>
+
+      <!-- Center QR Code -->
+      <g transform="translate(670, -10)">
+        <rect width="150" height="150" rx="10" fill="#FFFFFF" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.4))" />
+        <!-- QR Markers -->
+        <rect x="15" y="15" width="38" height="38" fill="#000" />
+        <rect x="21" y="21" width="26" height="26" fill="#FFF" />
+        <rect x="27" y="27" width="14" height="14" fill="#000" />
+
+        <rect x="97" y="15" width="38" height="38" fill="#000" />
+        <rect x="103" y="21" width="26" height="26" fill="#FFF" />
+        <rect x="109" y="27" width="14" height="14" fill="#000" />
+
+        <rect x="15" y="97" width="38" height="38" fill="#000" />
+        <rect x="21" y="103" width="26" height="26" fill="#FFF" />
+        <rect x="27" y="109" width="14" height="14" fill="#000" />
+
+        <!-- Mock QR Data Dots -->
+        <rect x="58" y="18" width="10" height="18" fill="#000" />
+        <rect x="74" y="24" width="14" height="10" fill="#000" />
+        <rect x="58" y="44" width="14" height="14" fill="#000" />
+        <rect x="80" y="42" width="10" height="22" fill="#000" />
+        <rect x="18" y="60" width="22" height="10" fill="#000" />
+        <rect x="44" y="60" width="10" height="20" fill="#000" />
+        <rect x="60" y="64" width="30" height="22" fill="#000" />
+        <rect x="96" y="64" width="16" height="12" fill="#000" />
+        <rect x="118" y="64" width="16" height="16" fill="#000" />
+        <rect x="58" y="96" width="20" height="12" fill="#000" />
+        <rect x="84" y="96" width="12" height="24" fill="#000" />
+        <rect x="104" y="96" width="28" height="12" fill="#000" />
+        <rect x="58" y="120" width="14" height="18" fill="#000" />
+        <rect x="80" y="126" width="24" height="12" fill="#000" />
+        <rect x="112" y="118" width="18" height="20" fill="#000" />
+      </g>
+    </g>
+
+    <!-- Bottom Runner Action Bar with Keyboard Hints -->
+    <g transform="translate(0, 208)">
+      <path d="M 0 0 L 880 0 L 880 40 Q 880 52 868 52 L 12 52 Q 0 52 0 40 Z" fill="#080C14" stroke="#1E293B" stroke-width="1" />
+      <g transform="translate(24, 10)">
+        <!-- Paid Button -->
+        <rect width="140" height="32" rx="6" fill="#10B981" />
+        <text x="70" y="21" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">✓ I paid this (Enter)</text>
+
+        <!-- Failed Button -->
+        <rect x="150" width="100" height="32" rx="6" fill="#EF4444" fill-opacity="0.15" stroke="#EF4444" stroke-opacity="0.4" />
+        <text x="200" y="21" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#FCA5A5" text-anchor="middle">Failed (E)</text>
+
+        <!-- Undo Button -->
+        <rect x="260" width="80" height="32" rx="6" fill="#1E293B" stroke="#475569" stroke-opacity="0.4" />
+        <text x="300" y="21" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#CBD5E1" text-anchor="middle">Undo (U)</text>
+
+        <!-- Keyboard hints right aligned -->
+        <g transform="translate(560, 21)" font-family="monospace" font-size="11" fill="#64748B">
+          <text><tspan fill="#CBD5E1">Enter</tspan> mark paid  ·  <tspan fill="#CBD5E1">E</tspan> failed  ·  <tspan fill="#CBD5E1">U</tspan> undo  ·  <tspan fill="#CBD5E1">← →</tspan> navigate</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Batch Completion Banner Preview -->
+  <g transform="translate(40, 495)">
+    <rect width="880" height="95" rx="10" fill="#065F46" fill-opacity="0.18" stroke="#10B981" stroke-opacity="0.35" />
+    <circle cx="36" cy="48" r="16" fill="#10B981" fill-opacity="0.25" />
+    <text x="36" y="54" font-family="sans-serif" font-size="16" font-weight="bold" fill="#34D399" text-anchor="middle">✓</text>
+    <g transform="translate(65, 32)">
+      <text x="0" y="10" font-family="-apple-system, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">
+        All 15 Payouts Resolved! <tspan fill="#34D399" font-size="11" font-family="monospace">100% Cleared</tspan>
+      </text>
+      <text x="0" y="28" font-family="-apple-system, sans-serif" font-size="12" fill="#94A3B8">
+        Total Volume: <tspan fill="#34D399" font-weight="bold">₹32,450</tspan> (15 cleared, 0 errors). Download updated audit CSV or copy rows.
+      </text>
+    </g>
+
+    <!-- Completion Buttons -->
+    <g transform="translate(560, 30)">
+      <rect width="145" height="34" rx="6" fill="#10B981" />
+      <text x="72" y="21" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">📥 Download Final CSV</text>
+
+      <rect x="155" width="95" height="34" rx="6" fill="#1E293B" stroke="#334155" />
+      <text x="202" y="21" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#CBD5E1" text-anchor="middle">📋 Copy Paid</text>
+    </g>
+  </g>
+</svg>

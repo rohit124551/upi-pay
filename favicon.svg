@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .fav-bg { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.5; }
+      @media (prefers-color-scheme: dark) {
+        .fav-bg { fill: #0B0F17; stroke: rgba(255, 255, 255, 0.15); stroke-width: 1.5; }
+      }
+    </style>
+    <linearGradient id="favSaffron" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFA133" />
+      <stop offset="50%" stop-color="#F17A21" />
+      <stop offset="100%" stop-color="#C24E00" />
+    </linearGradient>
+    <linearGradient id="favEmerald" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="50%" stop-color="#088B45" />
+      <stop offset="100%" stop-color="#04562B" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" class="fav-bg" />
+  <g transform="translate(14, 13) scale(0.65)">
+    <path d="M18.8 6.2C19.8 4.2 22.4 3.6 24.2 4.9L39.8 16.5C41.8 18 42.4 20.8 41.2 22.9L22.2 56.4C21.1 58.4 18.5 59 16.7 57.7L8.8 51.8C6.8 50.3 6.3 47.5 7.5 45.4L22.6 18.6C23.1 17.7 22.8 16.6 22 16L18.8 13.6C17 12.3 16.6 9.8 17.8 7.9L18.8 6.2Z" fill="url(#favSaffron)" />
+    <path d="M32.8 6.2C33.8 4.2 36.4 3.6 38.2 4.9L49.8 13.6C51.6 15 52 17.5 50.8 19.5L34.4 48.6C33.2 50.7 30.6 51.3 28.8 50L20.8 44.1C18.8 42.6 18.3 39.8 19.5 37.7L36.6 7.5C36.9 7 36.6 6.4 36 6L32.8 6.2Z" fill="url(#favEmerald)" />
+  </g>
+</svg>

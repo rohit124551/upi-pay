@@ -1,0 +1,22 @@
+{
+  "short_name": "UPI Pay",
+  "name": "UPI Pay - Bulk UPI & Dynamic QR Suite by Rohit Kumar Ranjan",
+  "description": "Free open-source client-side suite for bulk UPI payouts, batch pay, and dynamic QR generation. Zero backend servers. Built by Rohit Kumar Ranjan.",
+  "author": "Rohit Kumar Ranjan",
+  "categories": ["finance", "productivity", "utilities", "business"],
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#059669",
+  "background_color": "#0b0f17"
+}

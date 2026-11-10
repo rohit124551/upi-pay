@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>UPI Pay - Bulk UPI Payouts, Batch Payments & Dynamic QR Suite | by Rohit Kumar Ranjan</title>
+  <meta name="title" content="UPI Pay - Bulk UPI Payouts, Batch Payments & Dynamic QR Suite | by Rohit Kumar Ranjan">
+  <meta name="description" content="Free open-source browser suite for bulk UPI payouts, batch pay, and dynamic QR generation. 100% private in your browser with zero backend servers. Created by Rohit Kumar Ranjan.">
+  <meta name="keywords" content="bulk upi, upi pay, bulk upi payment, batch pay, batch upi, dynamic upi qr, upi qr generator, npci upi payment, rohit kumar ranjan, rohitkumarranjan.in, open source upi, zero backend payment, instant upi qr, upi payment gateway, bhim upi terminal">
+
+  <!-- Author Profile & Authority Optimization for Rohit Kumar Ranjan -->
+  <meta name="author" content="Rohit Kumar Ranjan">
+  <meta name="creator" content="Rohit Kumar Ranjan">
+  <meta name="publisher" content="Rohit Kumar Ranjan">
+  <meta name="copyright" content="Rohit Kumar Ranjan">
+  <link rel="author" href="https://rohitkumarranjan.in">
+  <link rel="me" href="https://rohitkumarranjan.in">
+  <link rel="me" href="https://github.com/rohit124551">
+
+  <!-- Search Engine Crawlers & Indexing Directives -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Geographic & Regional Targeting (GEO SEO) -->
+  <meta name="geo.region" content="IN">
+  <meta name="geo.placename" content="India">
+  <meta name="geo.position" content="20.5937;78.9629">
+  <meta name="ICBM" content="20.5937, 78.9629">
+  <meta http-equiv="content-language" content="en-IN, en">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="UPI Pay">
+  <meta property="og:title" content="UPI Pay - Bulk UPI Payouts & Dynamic QR Suite | by Rohit Kumar Ranjan">
+  <meta property="og:description" content="100% private, client-side bulk UPI payouts and dynamic QR code generation. Zero backend servers. Built by Rohit Kumar Ranjan.">
+  <meta property="og:image" content="logo.svg">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UPI Pay - Bulk UPI Payouts & Dynamic QR Suite">
+  <meta name="twitter:description" content="100% private, client-side bulk UPI payouts and dynamic QR code generation. Built by Rohit Kumar Ranjan.">
+  <meta name="twitter:image" content="logo.svg">
+  <meta name="twitter:creator" content="@rohit124551">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Schema.org JSON-LD Structured Data: SoftwareApplication & Author Profile -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "UPI Pay",
+        "alternateName": ["OpenUPI Terminal", "Bulk UPI Payout Suite", "Dynamic UPI QR Generator"],
+        "description": "Open-source client-side payment suite for bulk UPI payouts, batch pay, and dynamic QR generation. 100% private in browser with zero backend servers.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Rohit Kumar Ranjan",
+          "url": "https://rohitkumarranjan.in",
+          "sameAs": [
+            "https://github.com/rohit124551",
+            "https://rohitkumarranjan.in"
+          ]
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Rohit Kumar Ranjan",
+          "url": "https://rohitkumarranjan.in"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Rohit Kumar Ranjan",
+        "url": "https://rohitkumarranjan.in",
+        "sameAs": [
+          "https://github.com/rohit124551",
+          "https://rohitkumarranjan.in"
+        ],
+        "jobTitle": "Software Developer & Open Source Creator"
+      }
+    ]
+  }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- QRCode CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- SheetJS CDN -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"IBM Plex Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            border: '#27272a',
+            panel: '#111827',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --text: #f3f4f6;
+      --panel: #111827;
+      --border: #1f2937;
+      --input: #0A0F1A;
+      --muted: #94a3b8;
+      --table-hover: rgba(255, 255, 255, 0.04);
+    }
+    body.light {
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --panel: #ffffff;
+      --border: #e2e8f0;
+      --input: #f8fafc;
+      --muted: #64748b;
+      --table-hover: rgba(0, 0, 0, 0.03);
+    }
+    body { background-color: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; transition: background-color 0.15s, color 0.15s; }
+    .grain { background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0); background-size: 24px 24px; }
+    body.light .grain { background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0); }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #059669; font-weight: 600; }
+    body.dark .eyebrow { color: #34d399; }
+    input, textarea { background-color: var(--input) !important; color: var(--text) !important; border-color: var(--border) !important; }
+    header { background-color: var(--bg) !important; border-color: var(--border) !important; }
+  </style>
+</head>
+<body class="grain min-h-screen dark">
+  <header class="border-b border-border backdrop-blur sticky top-0 z-50">
+    <div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="grid h-9 w-9 place-items-center rounded-xl bg-white dark:bg-slate-900 border border-border shadow-xs hover:scale-105 transition-transform shrink-0">
+          <svg width="22" height="22" viewBox="0 0 56 64" fill="none" class="shrink-0" aria-label="UPI Pay Fast-Forward Logo">
+            <defs>
+              <linearGradient id="hdrSaffron" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFA133" />
+                <stop offset="50%" stop-color="#F17A21" />
+                <stop offset="100%" stop-color="#C24E00" />
+              </linearGradient>
+              <linearGradient id="hdrEmerald" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#34D399" />
+                <stop offset="50%" stop-color="#088B45" />
+                <stop offset="100%" stop-color="#04562B" />
+              </linearGradient>
+            </defs>
+            <path d="M18.8 6.2C19.8 4.2 22.4 3.6 24.2 4.9L39.8 16.5C41.8 18 42.4 20.8 41.2 22.9L22.2 56.4C21.1 58.4 18.5 59 16.7 57.7L8.8 51.8C6.8 50.3 6.3 47.5 7.5 45.4L22.6 18.6C23.1 17.7 22.8 16.6 22 16L18.8 13.6C17 12.3 16.6 9.8 17.8 7.9L18.8 6.2Z" fill="url(#hdrSaffron)" />
+            <path d="M32.8 6.2C33.8 4.2 36.4 3.6 38.2 4.9L49.8 13.6C51.6 15 52 17.5 50.8 19.5L34.4 48.6C33.2 50.7 30.6 51.3 28.8 50L20.8 44.1C18.8 42.6 18.3 39.8 19.5 37.7L36.6 7.5C36.9 7 36.6 6.4 36 6L32.8 6.2Z" fill="url(#hdrEmerald)" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-base tracking-tight"><span class="bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent">UPI</span><span class="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent ml-1">Pay</span></span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 border border-emerald-500/20">Frontend Only</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Zero backend - 100% private in browser</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="mode-batch-btn" onclick="setMode('batch')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/40">Batch Payout</button>
+        <button id="mode-quick-btn" onclick="setMode('quick')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">Quick QR</button>
+        <button id="theme-btn" onclick="toggleTheme()" class="p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" title="Toggle Light / Dark Theme"><i id="theme-icon" data-lucide="sun" class="w-4 h-4"></i></button>
+        <button onclick="openInfoModal('faq')" class="px-2.5 py-1.5 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1.5 text-xs font-medium" title="FAQ, About & NPCI Terms"><i data-lucide="help-circle" class="w-4 h-4 text-emerald-500"></i><span class="hidden sm:inline">FAQ</span></button>
+        <button onclick="toggleSettings()" class="p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" title="Settings"><i data-lucide="settings" class="w-4 h-4"></i></button>
+        <button onclick="clearBatch()" class="p-2 rounded-md hover:bg-red-500/10 text-slate-400 hover:text-red-500" title="Reset"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1440px] mx-auto px-6 py-8">
+    <!-- QUICK QR MODE -->
+    <div id="quick-view" class="hidden max-w-xl mx-auto space-y-6">
+      <div class="panel p-6 space-y-4">
+        <h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="qr-code" class="text-emerald-400 w-5 h-5"></i> Generate Instant UPI QR</h2>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">UPI ID *</label>
+          <input id="q-vpa" type="text" placeholder="rahul@okaxis" class="w-full bg-[#0A0F1A] border border-border rounded px-3 py-2 text-sm font-mono focus:outline-none focus:border-emerald-500" oninput="updateQuickQr()">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Amount in ₹ (optional)</label>
+            <input id="q-amt" type="number" placeholder="500" class="w-full bg-[#0A0F1A] border border-border rounded px-3 py-2 text-sm font-mono focus:outline-none focus:border-emerald-500" oninput="updateQuickQr()">
+            <div class="mt-1.5 flex flex-wrap items-center gap-1">
+              <span class="text-[10px] text-slate-500 mr-0.5">Quick:</span>
+              <button type="button" onclick="setQuickAmt(100)" class="px-1.5 py-0.5 rounded text-[10px] font-mono border border-border text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40">₹100</button>
+              <button type="button" onclick="setQuickAmt(200)" class="px-1.5 py-0.5 rounded text-[10px] font-mono border border-border text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40">₹200</button>
+              <button type="button" onclick="setQuickAmt(500)" class="px-1.5 py-0.5 rounded text-[10px] font-mono border border-border text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40">₹500</button>
+              <button type="button" onclick="setQuickAmt(1000)" class="px-1.5 py-0.5 rounded text-[10px] font-mono border border-border text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40">₹1,000</button>
+              <button type="button" onclick="setQuickAmt(2000)" class="px-1.5 py-0.5 rounded text-[10px] font-mono border border-border text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40">₹2,000</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Recipient Name (optional)</label>
+            <input id="q-name" type="text" placeholder="John Doe" class="w-full bg-[#0A0F1A] border border-border rounded px-3 py-2 text-sm focus:outline-none focus:border-emerald-500" oninput="updateQuickQr()">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Payment Note (optional)</label>
+          <input id="q-note" type="text" placeholder="Dinner share" class="w-full bg-[#0A0F1A] border border-border rounded px-3 py-2 text-sm focus:outline-none focus:border-emerald-500" oninput="updateQuickQr()">
+        </div>
+      </div>
+      <div class="panel p-6 flex flex-col items-center justify-center text-center space-y-4">
+        <div id="quick-qrcode-container" class="bg-white p-4 rounded-xl shadow-lg"></div>
+        <div id="quick-info" class="text-sm font-mono text-slate-300">Enter a UPI ID above to view QR</div>
+        <div id="quick-share-actions" class="hidden flex flex-wrap items-center justify-center gap-2 pt-2">
+          <button onclick="downloadQuickCard()" class="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold flex items-center gap-1.5 transition-colors">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Save Image
+          </button>
+          <button onclick="copyQuickCardImage()" class="px-3.5 py-1.5 rounded-lg border border-border text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors">
+            <i data-lucide="image" class="w-3.5 h-3.5"></i> Copy Image
+          </button>
+          <button onclick="openQuickPayLink()" class="px-3.5 py-1.5 rounded-lg border border-blue-500/40 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Open payment link in a new tab">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Open Link
+          </button>
+          <button onclick="copyQuickShareLink()" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-500/20 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Link
+          </button>
+          <button onclick="shareQuickLink()" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 hover:bg-emerald-500/20 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+            <i data-lucide="share-2" class="w-3.5 h-3.5"></i> Share Link
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHAREABLE PAY LANDING VIEW (/#/pay/:upiId/:amount/:desc) -->
+    <div id="pay-landing-view" class="hidden max-w-md mx-auto space-y-5">
+      <div class="panel p-6 sm:p-7 space-y-5 text-center">
+        <!-- Top Controls: Back, + New QR, Download Dropdown & Share -->
+        <div class="flex items-center justify-between pb-3 border-b border-border">
+          <button onclick="exitLandingView()" class="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Back</span>
+          </button>
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <!-- + New QR -->
+            <a href="#quickqr" onclick="exitToQuickQr(event)" class="group inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 px-2 py-1.5 sm:px-2.5 text-xs font-semibold text-emerald-400 transition-all hover:scale-105 active:scale-95 shadow-xs" title="Create your own dynamic UPI QR">
+              <i data-lucide="plus" class="w-3.5 h-3.5 stroke-[2.5] text-emerald-400 transition-transform group-hover:rotate-90"></i>
+              <span class="hidden sm:inline">New QR</span>
+            </a>
+            <!-- Download Dropdown -->
+            <div class="relative">
+              <button onclick="toggleLandingDownloadMenu()" id="landing-download-btn" class="inline-flex items-center gap-1 rounded-md border border-border px-2 py-1.5 sm:px-2.5 text-xs font-medium text-slate-300 hover:text-white transition-colors" title="Download standee (PDF, JPG, PNG)">
+                <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span class="hidden sm:inline">Download</span>
+                <i data-lucide="chevron-down" class="w-3 h-3 opacity-60"></i>
+              </button>
+              <div id="landing-download-menu" class="hidden absolute right-0 mt-1.5 w-36 rounded-lg border border-border bg-[#111827] p-1 shadow-lg z-50 text-xs">
+                <button onclick="downloadLandingCard('pdf'); toggleLandingDownloadMenu(false)" class="w-full flex items-center gap-2 rounded px-2.5 py-1.5 text-left hover:bg-slate-800 font-medium text-slate-200">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5 text-red-400"></i> Download PDF
+                </button>
+                <button onclick="downloadLandingCard('jpg'); toggleLandingDownloadMenu(false)" class="w-full flex items-center gap-2 rounded px-2.5 py-1.5 text-left hover:bg-slate-800 font-medium text-slate-200">
+                  <i data-lucide="image" class="w-3.5 h-3.5 text-blue-400"></i> Download JPG
+                </button>
+                <button onclick="downloadLandingCard('png'); toggleLandingDownloadMenu(false)" class="w-full flex items-center gap-2 rounded px-2.5 py-1.5 text-left hover:bg-slate-800 font-medium text-slate-200">
+                  <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400"></i> Download PNG
+                </button>
+              </div>
+            </div>
+            <!-- Share Button (Shares standee image + /pay/ link) -->
+            <button onclick="shareLandingWithImageAndLink()" class="inline-flex items-center gap-1.5 rounded-md border border-border px-2 py-1.5 sm:px-2.5 text-xs font-medium text-slate-300 hover:text-white transition-colors" title="Share QR image & payment link">
+              <i data-lucide="share-2" class="w-3.5 h-3.5 text-blue-400"></i>
+              <span class="hidden sm:inline">Share</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Innovative QR Code Showcase at Top -->
+        <div class="flex flex-col items-center justify-center space-y-2 pt-1">
+          <div class="relative rounded-3xl bg-white p-4 sm:p-5 shadow-lg ring-1 ring-slate-900/5 dark:ring-white/10 transition-transform hover:scale-[1.01]">
+            <!-- Corner scan brackets -->
+            <div class="absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-emerald-500 rounded-tl-sm pointer-events-none"></div>
+            <div class="absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-emerald-500 rounded-tr-sm pointer-events-none"></div>
+            <div class="absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-emerald-500 rounded-bl-sm pointer-events-none"></div>
+            <div class="absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-emerald-500 rounded-br-sm pointer-events-none"></div>
+
+            <div id="landing-qrcode"></div>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium flex items-center gap-1.5 pt-0.5">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Scan with any UPI app on another device
+          </p>
+        </div>
+
+        <!-- 2. Downside to QR Code: Paying to & Centered UPI ID -->
+        <div class="space-y-1.5 pt-1">
+          <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">
+            Paying to
+          </p>
+          <div class="flex items-center justify-center">
+            <button type="button" onclick="copyLandingUpiId()" class="inline-flex items-center gap-2 rounded-xl border border-border bg-[#0A0F1A] px-3.5 py-1.5 text-sm sm:text-base font-mono font-semibold text-slate-200 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all shadow-xs group" title="Click to copy UPI ID">
+              <span id="landing-upi-id" class="break-all"></span>
+              <i data-lucide="copy" class="w-3.5 h-3.5 text-slate-400 opacity-60 group-hover:opacity-100 transition-opacity shrink-0"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. If Amount then Amount & Note -->
+        <div id="landing-amount-container" style="display: none;" class="pt-0.5 space-y-0.5">
+          <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Amount to pay</span>
+          <div class="pt-0.5">
+            <span id="landing-amount" class="font-mono text-4xl sm:text-5xl font-extrabold tracking-tight text-white break-all"></span>
+          </div>
+        </div>
+        <p id="landing-desc" class="text-xs sm:text-sm text-slate-400 italic break-words"></p>
+
+        <!-- 4. Downside Pay Button & Brand Strip -->
+        <div class="space-y-3 pt-1">
+          <button onclick="launchDefaultUpi()" class="w-full h-12 text-base font-semibold bg-emerald-500 hover:bg-emerald-400 text-black rounded-lg shadow-md flex items-center justify-center gap-2 transition-transform active:scale-[0.99]">
+            <span id="landing-pay-btn-text">Pay Now</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0"></i>
+          </button>
+
+          <!-- Official BHIM UPI Brand Strip -->
+          <div class="rounded-xl border border-border/80 bg-slate-500/5 p-4 space-y-3 text-center">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              Scan & pay with any UPI app
+            </p>
+            <!-- Top Row: BHIM + UPI -->
+            <div class="flex items-center justify-center gap-4 sm:gap-6 py-1">
+              <img src="bhim.svg" alt="BHIM" class="h-6 sm:h-7 w-auto max-w-[120px] object-contain">
+              <div class="h-6 w-px bg-border"></div>
+              <img src="upi.svg" alt="UPI" class="h-6 sm:h-7 w-auto max-w-[120px] object-contain">
+            </div>
+            <!-- Bottom Row: GPay, PhonePe, Paytm (No Amazon Pay) -->
+            <div class="flex items-center justify-center gap-3 pt-1">
+              <div class="flex h-8 items-center justify-center rounded-lg border border-border bg-white dark:bg-slate-900 px-3 py-1 shadow-xs">
+                <img src="gpay.svg" alt="Google Pay" class="h-4 sm:h-5 w-auto object-contain">
+              </div>
+              <div class="flex h-8 items-center justify-center rounded-lg border border-border bg-white dark:bg-slate-900 px-3 py-1 shadow-xs">
+                <img src="phonepe.svg" alt="PhonePe" class="h-4 sm:h-5 w-auto object-contain">
+              </div>
+              <div class="flex h-8 items-center justify-center rounded-lg border border-border bg-white dark:bg-slate-900 px-3 py-1 shadow-xs">
+                <img src="paytm.svg" alt="Paytm" class="h-4 sm:h-5 w-auto object-contain">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATCH MODE: STAGE 1 (PASTE) -->
+    <div id="batch-paste-view" class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <section>
+        <p class="eyebrow">Step 1</p>
+        <h1 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight">Paste your payout list</h1>
+        <p class="mt-2 text-sm text-slate-400">Pasted text is automatically cleaned, parsed, merged for duplicate IDs, and summed. Nothing is sent to any server.</p>
+        <textarea id="paste-input" placeholder="rahul.verma42@okaxis (Rahul Verma) ₹4,250&#10;9999991811@ybl - 1,200/-&#10;anita.sharma@upi 500&#10;Total: 5950" class="mt-6 w-full h-[360px] bg-[#0A0F1A] border border-border rounded-lg p-4 font-mono text-sm leading-6 focus:outline-none focus:border-emerald-500" oninput="updateLineCount()"></textarea>
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <button onclick="cleanPastedText()" class="px-5 py-2.5 rounded-lg bg-emerald-500 text-black font-semibold text-sm hover:bg-emerald-400 flex items-center gap-2"><i data-lucide="clipboard-paste" class="w-4 h-4"></i> Clean & Review</button>
+          <button onclick="loadSampleText()" class="px-4 py-2.5 rounded-lg border border-border text-slate-300 hover:text-white hover:border-slate-500 text-sm flex items-center gap-2"><i data-lucide="flask-conical" class="w-4 h-4"></i> Load Sample Data</button>
+          <label class="px-4 py-2.5 rounded-lg border border-border text-slate-300 hover:text-white hover:border-slate-500 text-sm flex items-center gap-2 cursor-pointer">
+            <i data-lucide="upload" class="w-4 h-4"></i> Upload Excel / CSV
+            <input type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="handleFileUpload(event)">
+          </label>
+          <span id="line-count" class="font-mono text-xs text-slate-500 ml-auto">0 lines</span>
+        </div>
+      </section>
+      <aside class="space-y-3 lg:pt-20">
+        <div class="panel p-4">
+          <div class="flex items-center gap-2 text-sm font-semibold text-emerald-400"><i data-lucide="sigma" class="w-4 h-4"></i> Totals Verified</div>
+          <p class="mt-1 text-xs text-slate-400">Source lines are compared against what will be paid. Any mismatch stops you before paying.</p>
+        </div>
+        <div class="panel p-4">
+          <div class="flex items-center gap-2 text-sm font-semibold text-emerald-400"><i data-lucide="merge" class="w-4 h-4"></i> Duplicates Merged</div>
+          <p class="mt-1 text-xs text-slate-400">Multiple rows with the same UPI ID are automatically merged into one single payment with full audit history.</p>
+        </div>
+        <div class="panel p-4">
+          <div class="flex items-center gap-2 text-sm font-semibold text-emerald-400"><i data-lucide="scan-line" class="w-4 h-4"></i> Zero Guessing</div>
+          <p class="mt-1 text-xs text-slate-400">No bank handles are guessed for 10-digit mobile numbers. You confirm the exact app lookup.</p>
+        </div>
+        <div class="panel p-4">
+          <div class="flex items-center gap-2 text-sm font-semibold text-emerald-400"><i data-lucide="shield-check" class="w-4 h-4"></i> 100% Client-Side</div>
+          <p class="mt-1 text-xs text-slate-400">Zero backend servers. Everything runs entirely within this browser page.</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BATCH MODE: STAGE 2 (REVIEW) -->
+    <div id="batch-review-view" class="hidden space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p class="eyebrow">Step 2</p>
+          <h1 class="text-3xl font-bold tracking-tight">Audit & Verify Before Paying</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="setStage('paste')" class="px-4 py-2 rounded-lg border border-border text-sm hover:text-white flex items-center gap-2"><i data-lucide="pencil" class="w-4 h-4"></i> Edit Source</button>
+          <button onclick="startPaying()" class="px-5 py-2.5 rounded-lg bg-emerald-500 text-black font-semibold text-sm hover:bg-emerald-400 flex items-center gap-2"><i data-lucide="play" class="w-4 h-4"></i> Start Payment Run</button>
+        </div>
+      </div>
+      <!-- Recon summary banner -->
+      <div id="recon-banner" class="panel p-5 border-emerald-500/30 bg-emerald-500/5"></div>
+      <!-- Rows table -->
+      <div class="panel overflow-hidden">
+        <div class="p-4 border-b border-border flex justify-between items-center">
+          <h2 class="font-semibold text-sm">Recipients to be paid (<span id="rows-count">0</span>)</h2>
+          <span class="text-xs text-slate-400">Case-insensitive deduplication applied</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-[#0A0F1A] text-slate-400 font-mono text-xs uppercase border-b border-border">
+              <tr>
+                <th class="px-4 py-3">#</th>
+                <th class="px-4 py-3">UPI ID / Number</th>
+                <th class="px-4 py-3">Name</th>
+                <th class="px-4 py-3">Source Lines</th>
+                <th class="px-4 py-3 text-right">Amount (₹)</th>
+              </tr>
+            </thead>
+            <tbody id="rows-table-body" class="divide-y divide-border font-mono text-xs"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATCH MODE: STAGE 3 (PAY TERMINAL) -->
+    <div id="batch-pay-view" class="hidden space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="eyebrow">Step 3</p>
+          <h1 class="text-3xl font-bold">Terminal Payment Mode</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="copyRows('paid')" class="px-3 py-1.5 rounded border border-emerald-500/40 text-emerald-300 bg-emerald-500/10 text-xs flex items-center gap-1.5 hover:bg-emerald-500/20" title="Copies: UPI ID, Amount, Status (paid ✅)"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Paid</button>
+          <button onclick="copyRows('failed')" class="px-3 py-1.5 rounded border border-red-500/40 text-red-300 bg-red-500/10 text-xs flex items-center gap-1.5 hover:bg-red-500/20" title="Copies: UPI ID, Amount, Status (Error: reason)"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Errors</button>
+          <button onclick="copyRows('all')" class="px-3 py-1.5 rounded border border-border text-xs flex items-center gap-1.5 text-slate-300 hover:text-white" title="Copies: UPI ID, Amount, Status"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy All</button>
+          <button onclick="exportCsv()" class="px-3 py-1.5 rounded border border-border text-xs flex items-center gap-1.5 text-slate-300 hover:text-white" title="Export CSV starting with 3 columns"><i data-lucide="download" class="w-3.5 h-3.5"></i> Export CSV</button>
+          <button onclick="setStage('review')" class="px-3 py-1.5 rounded border border-border text-xs text-slate-400 hover:text-white">Review Screen</button>
+        </div>
+      </div>
+
+      <!-- Batch Completion Summary Banner (shown when all rows resolved) -->
+      <div id="batch-completion-banner" class="hidden panel border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 via-slate-900 to-amber-500/5 p-6 space-y-4 shadow-lg"></div>
+
+      <!-- Card for active item -->
+      <div class="grid gap-6 lg:grid-cols-[1fr_380px]">
+        <div class="panel p-0 overflow-hidden flex flex-col items-center justify-center text-center">
+          <!-- Runner linear progress bar -->
+          <div class="h-1.5 w-full bg-slate-800" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div id="runner-progress-bar" class="h-full bg-gradient-to-r from-orange-500 via-amber-500 to-emerald-500 transition-all duration-300 ease-out" style="width: 0%"></div>
+          </div>
+          <div class="p-8 w-full flex flex-col items-center justify-center text-center space-y-4">
+            <span id="current-row-badge" class="font-mono text-xs text-slate-400">Recipient 1 of 5</span>
+            <div class="text-5xl font-mono font-bold text-white tracking-tight" id="pay-amount">₹0</div>
+            <div class="space-y-1">
+              <h3 class="text-xl font-bold text-slate-100" id="pay-name">Name</h3>
+              <p class="text-sm font-mono text-emerald-400" id="pay-vpa">vpa@bank</p>
+            </div>
+            <!-- Big QR Code -->
+            <div class="p-4 bg-white rounded-2xl shadow-2xl mt-4" id="pay-qrcode"></div>
+            <!-- Action controls -->
+            <div class="flex items-center gap-3 pt-4">
+              <button onclick="prevRow()" class="px-4 py-2 rounded-lg border border-border hover:bg-slate-800 text-sm flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Prev (←)</button>
+              <button onclick="markCurrentPaid()" class="px-6 py-2.5 rounded-lg bg-emerald-500 text-black font-bold text-sm hover:bg-emerald-400 flex items-center gap-1"><i data-lucide="check" class="w-4 h-4"></i> Mark Paid (Enter)</button>
+              <button onclick="markCurrentFailed()" class="px-4 py-2 rounded-lg border border-red-500/40 text-red-300 hover:bg-red-500/10 text-sm flex items-center gap-1"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Mark Error (E)</button>
+              <button onclick="undoCurrentPaid()" class="px-4 py-2 rounded-lg border border-border hover:bg-slate-800 text-sm flex items-center gap-1"><i data-lucide="undo" class="w-4 h-4"></i> Undo (U)</button>
+              <button onclick="nextRow()" class="px-4 py-2 rounded-lg border border-border hover:bg-slate-800 text-sm flex items-center gap-1">Next (→) <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Right side list tracker -->
+        <div class="panel p-4 flex flex-col h-[520px]">
+          <h3 class="text-sm font-semibold pb-3 border-b border-border">Run Status</h3>
+          <div id="pay-queue-list" class="divide-y divide-border overflow-y-auto flex-1 font-mono text-xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="mt-12 border-t border-border pt-6 pb-8 text-center text-xs text-slate-400 space-y-1.5 px-4" role="contentinfo">
+      <p class="leading-normal">Open source client-side payment tool • zero backend servers</p>
+      <p class="flex items-center justify-center gap-2 text-[11px] text-slate-400/90 flex-wrap">
+        <button type="button" onclick="openInfoModal('about')" class="hover:underline hover:text-white transition-colors cursor-pointer">About & NPCI</button>
+        <span>•</span>
+        <button type="button" onclick="openInfoModal('faq')" class="hover:underline hover:text-white transition-colors cursor-pointer">FAQ</button>
+        <span>•</span>
+        <button type="button" onclick="openInfoModal('privacy')" class="hover:underline hover:text-white transition-colors cursor-pointer">Privacy & Terms</button>
+      </p>
+      <p class="mt-0.5 text-[11px] opacity-80 flex items-center justify-center gap-1.5 flex-wrap leading-normal">
+        <span>Built with ❤️ by</span>
+        <a href="https://rohitkumarranjan.in" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-200 hover:text-emerald-400 underline underline-offset-2 transition-colors">
+          Rohit Kumar Ranjan
+        </a>
+        <span>-</span>
+        <a href="https://github.com/rohit124551/upi-pay" target="_blank" rel="noopener noreferrer" class="hover:underline text-emerald-400 inline-flex items-center gap-1 font-medium">
+          <i data-lucide="github" class="w-3 h-3"></i>
+          <span>GitHub</span>
+        </a>
+        <span>•</span>
+        <span>MIT License</span>
+      </p>
+    </footer>
+
+    <!-- INFO MODAL: FAQ, About & NPCI, Privacy & Terms -->
+    <div id="info-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
+      <div class="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-2xl border border-border bg-[#111827] p-5 sm:p-6 text-slate-200 shadow-2xl">
+        <!-- Close button -->
+        <button onclick="closeInfoModal()" class="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Close">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Header -->
+        <div class="flex items-center gap-3 pb-3 border-b border-border">
+          <div class="grid h-8 w-8 place-items-center rounded-xl bg-white dark:bg-slate-900 border border-border shadow-xs shrink-0">
+            <svg width="18" height="18" viewBox="0 0 56 64" fill="none">
+              <path d="M18.8 6.2C19.8 4.2 22.4 3.6 24.2 4.9L39.8 16.5C41.8 18 42.4 20.8 41.2 22.9L22.2 56.4C21.1 58.4 18.5 59 16.7 57.7L8.8 51.8C6.8 50.3 6.3 47.5 7.5 45.4L22.6 18.6C23.1 17.7 22.8 16.6 22 16L18.8 13.6C17 12.3 16.6 9.8 17.8 7.9L18.8 6.2Z" fill="url(#hdrSaffron)" />
+              <path d="M32.8 6.2C33.8 4.2 36.4 3.6 38.2 4.9L49.8 13.6C51.6 15 52 17.5 50.8 19.5L34.4 48.6C33.2 50.7 30.6 51.3 28.8 50L20.8 44.1C18.8 42.6 18.3 39.8 19.5 37.7L36.6 7.5C36.9 7 36.6 6.4 36 6L32.8 6.2Z" fill="url(#hdrEmerald)" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-extrabold text-white flex items-center gap-1.5">
+              <span><span class="bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent">UPI</span><span class="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent ml-1">Pay</span></span>
+              <span class="text-xs font-mono font-normal text-slate-400 ml-1">v2.0</span>
+            </h3>
+            <p class="text-xs text-slate-400">Zero-backend bulk UPI payout terminal & dynamic QR generator</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex items-center gap-1.5 p-1 bg-slate-900/80 rounded-xl border border-border mt-3">
+          <button id="tab-btn-faq" onclick="setInfoTab('faq')" class="flex-1 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center gap-1.5">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5 text-emerald-400"></i> FAQ
+          </button>
+          <button id="tab-btn-about" onclick="setInfoTab('about')" class="flex-1 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
+            <i data-lucide="info" class="w-3.5 h-3.5 text-blue-400"></i> About & NPCI
+          </button>
+          <button id="tab-btn-privacy" onclick="setInfoTab('privacy')" class="flex-1 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Privacy & Terms
+          </button>
+        </div>
+
+        <!-- Tab 1: FAQ -->
+        <div id="tab-content-faq" class="mt-4 space-y-3 text-xs sm:text-sm">
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">1</span>
+              What is UPI Pay and how does it work?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              UPI Pay is an open-source, client-side web suite for making multiple UPI payments safely. It cleans pasted lists or uploaded spreadsheets, merges duplicate entries for the same UPI ID, balances your totals, and generates individual QR codes for each recipient so you can pay them one-by-one from your mobile banking app without typing errors.
+            </p>
+          </div>
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">2</span>
+              Does UPI Pay ever ask for my UPI PIN or bank password?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              <strong class="text-white">Never.</strong> UPI Pay never asks for, receives, or has access to your UPI PIN, MPIN, OTP, or bank login. Your UPI PIN is entered solely on your own phone inside your official, certified UPI app (Google Pay, PhonePe, Paytm, BHIM, etc.).
+            </p>
+          </div>
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">3</span>
+              Does UPI Pay touch, hold, or route my money?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              <strong class="text-white">No.</strong> UPI Pay is not a payment intermediary, wallet, or payment aggregator. It only creates standard NPCI-compliant payment intent deep links (<code class="font-mono text-emerald-400">upi://pay</code>). The actual money transfer happens directly from your bank account to the recipient's bank account via the NPCI payment network.
+            </p>
+          </div>
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">4</span>
+              How does duplicate detection protect me?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              If the same recipient appears multiple times across your list (for example, ₹400 for lunch and ₹1,200 for supplies), UPI Pay automatically merges them into a single payment of ₹1,600, preserving audit history so you don't accidentally pay them twice.
+            </p>
+          </div>
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">5</span>
+              Are shareable payment links (/pay/) public or crawled by search engines?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              <strong class="text-white">No.</strong> Payment details are encoded entirely in the URL parameters. No link data is stored on any server. Furthermore, search engine crawlers are strictly forbidden from indexing payment links via <code class="font-mono text-xs">robots.txt Disallow</code> and <code class="font-mono text-xs">noindex, nofollow</code> robot directives.
+            </p>
+          </div>
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-2">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">6</span>
+              What are the official NPCI transaction limits & frequency caps?
+            </h4>
+            <div class="text-slate-400 leading-relaxed pl-7 space-y-2 text-xs sm:text-sm">
+              <p>
+                The National Payments Corporation of India (NPCI) and Reserve Bank of India (RBI) establish standard transaction and velocity limits across the UPI network:
+              </p>
+              <div class="grid gap-2 sm:grid-cols-2 pt-1 text-xs">
+                <div class="p-2.5 rounded-lg border border-border/70 bg-slate-900/60 space-y-1">
+                  <span class="font-semibold text-white block text-xs">Standard UPI (P2P Transfers):</span>
+                  <ul class="list-disc pl-4 space-y-0.5 text-slate-400 text-[11px]">
+                    <li><strong class="text-slate-200">20 transactions/day</strong> count cap per bank account (rolling 24h).</li>
+                    <li><strong class="text-slate-200">₹1,00,000/day</strong> standard peer-to-peer monetary limit.</li>
+                    <li><strong class="text-slate-200">₹5,00,000 max</strong> for approved taxes, hospitals, colleges & IPOs.</li>
+                    <li><strong class="text-slate-200">₹5,000 cap</strong> for first 24h on new setup or PIN reset.</li>
+                  </ul>
+                </div>
+                <div class="p-2.5 rounded-lg border border-border/70 bg-slate-900/60 space-y-1">
+                  <span class="font-semibold text-white block text-xs">UPI Lite (Small-Value Payments):</span>
+                  <ul class="list-disc pl-4 space-y-0.5 text-slate-400 text-[11px]">
+                    <li><strong class="text-slate-200">Up to ₹1,000</strong> per transaction (PIN-less instant pay).</li>
+                    <li><strong class="text-slate-200">Up to ₹5,000</strong> maximum wallet balance at any point.</li>
+                    <li><strong class="text-slate-200">Up to ₹10,000</strong> cumulative daily spend/top-up limit.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">7</span>
+              Can I process batches with more than 20 people using UPI Pay?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              Yes! UPI Pay allows you to paste, clean, and reconcile batches of any size (e.g. 50 or 100 payees). If you encounter your bank's 20-transaction daily velocity limit, you can complete the first 20 transactions today, and complete the remaining payments the next day or from a secondary linked bank account. You can export an updated CSV run log at any stage.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-3.5 space-y-1">
+            <h4 class="font-semibold text-white flex items-center gap-2">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-bold">8</span>
+              What should I do if a payment fails or is declined?
+            </h4>
+            <p class="text-slate-400 leading-relaxed pl-7">
+              Press <strong class="text-white">E</strong> on your keyboard or tap <strong class="text-white">Mark Error</strong>. You can enter the failure reason (such as "Bank server down" or "Daily limit reached"). The item will be tagged with a red warning badge, and you can click <strong class="text-white">Copy Errors</strong> to isolate and retry only the failed recipients later.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tab 2: About & NPCI -->
+        <div id="tab-content-about" class="hidden mt-4 space-y-3.5 text-xs sm:text-sm">
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-4 space-y-2">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i> Why UPI Pay Exists
+            </h4>
+            <p class="text-slate-400 leading-relaxed">
+              Personal and retail bank accounts in India do not have access to bulk-payout APIs. Small businesses, freelance collectives, event organizers, and student teams are often forced to manually re-type 20 to 50 UPI IDs and amounts on a mobile keyboard—a tedious process where a single misplaced digit can send money to an unintended stranger.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              <strong class="text-white">UPI Pay</strong> solves this with an open-source, keyboard-driven, verified workflow that guarantees totals reconcile before a single rupee is sent.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 space-y-2">
+            <h4 class="text-xs uppercase tracking-wider font-bold text-amber-400 flex items-center gap-1.5">
+              <i data-lucide="scale" class="w-4 h-4"></i> NPCI & Trademark Disclaimer
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <strong class="text-white">UPI Pay</strong> is an independent open-source software project. It is <strong class="text-amber-300">not affiliated with, endorsed by, sponsored by, or partner of the National Payments Corporation of India (NPCI)</strong>, Reserve Bank of India (RBI), or any commercial bank.
+            </p>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              • <strong class="text-white">BHIM</strong> and <strong class="text-white">UPI</strong> are registered trademarks of the National Payments Corporation of India (NPCI).<br>
+              • Google Pay, PhonePe, Paytm, Cred, and bank handles are trademarks of their respective owners, referenced solely for user convenience and compatibility.
+            </p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              All QR codes generated strictly adhere to the public NPCI UPI Linking Specifications and Common QR Code Standards.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 space-y-2">
+            <h4 class="text-xs uppercase tracking-wider font-bold text-emerald-400 flex items-center gap-1.5">
+              <i data-lucide="heart" class="w-3.5 h-3.5 text-emerald-400 fill-emerald-400"></i> Open Source Maintainer & Author
+            </h4>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+              <div>
+                <a href="https://rohitkumarranjan.in" target="_blank" rel="noopener noreferrer" class="text-base font-bold text-white hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5">
+                  <span>Rohit Kumar Ranjan</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-60"></i>
+                </a>
+                <p class="text-xs text-slate-400 mt-0.5">
+                  Portfolio: <a href="https://rohitkumarranjan.in" target="_blank" rel="noopener noreferrer" class="underline hover:text-white">rohitkumarranjan.in</a>
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="https://github.com/rohit124551/upi-pay" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg border border-border bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800 transition-colors">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub
+                </a>
+                <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400">MIT License</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bug Reports & Feedback -->
+          <div class="rounded-xl border border-border/80 bg-slate-800/30 p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs uppercase tracking-wider font-bold text-white flex items-center gap-1.5">
+                <i data-lucide="message-square" class="w-3.5 h-3.5 text-emerald-400"></i> Bug Reports & Feature Suggestions
+              </h4>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                Zero-Backend Tracking
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Found an issue with a bank handle, total reconciliation, or want to suggest an improvement? Submit directly via our quick Google Form, open a GitHub Issue, or reach out to the maintainer.
+            </p>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <a href="https://forms.gle/eynzCQDh8v3Puosx7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/20 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/30 transition-all shadow-xs">
+                <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Google Form (Feedback & Bugs)</span>
+                <i data-lucide="external-link" class="w-3 h-3 opacity-60"></i>
+              </a>
+              <a href="https://github.com/rohit124551/upi-pay/issues/new?template=bug_report.md&title=%5BBug%5D%3A+" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-medium text-red-400 hover:bg-red-500/20 transition-colors">
+                <i data-lucide="bug" class="w-3.5 h-3.5"></i>
+                <span>Report on GitHub</span>
+              </a>
+              <a href="https://github.com/rohit124551/upi-pay/issues/new?template=feature_request.md&title=%5BFeature%5D%3A+" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-1.5 text-xs font-medium text-blue-400 hover:bg-blue-500/20 transition-colors">
+                <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>
+                <span>Suggest Feature</span>
+              </a>
+              <a href="mailto:contact@rohitkumarranjan.in?subject=%5BUPI%20Pay%5D%20Feedback%20%2F%20Bug%20Report&body=Hi%20Rohit%2C%0A%0AHere%20is%20my%20feedback%20%2F%20bug%20report%20for%20UPI%20Pay%3A%0A" class="inline-flex items-center gap-1.5 rounded-lg border border-border bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">
+                <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                <span>Email Maintainer</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Privacy & Terms -->
+        <div id="tab-content-privacy" class="hidden mt-4 space-y-3.5 text-xs sm:text-sm">
+          <div class="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 flex items-start gap-3">
+            <i data-lucide="lock" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-white text-sm">Privacy by Architecture</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mt-0.5">
+                UPI Pay is architected with zero backend servers. We cannot collect, store, view, or sell your financial data because it never leaves your browser sandbox.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3 pt-1">
+            <div class="space-y-1">
+              <h5 class="font-semibold text-white">1. Zero Data Collection & Storage</h5>
+              <p class="text-slate-400 leading-relaxed text-xs">
+                We collect no personal data, payment lists, recipient UPI IDs, phone numbers, or financial amounts. No analytics, tracking pixels, or cross-site telemetry are included.
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h5 class="font-semibold text-white">2. Local Browser Storage Use</h5>
+              <p class="text-slate-400 leading-relaxed text-xs">
+                Your browser's <code class="font-mono">localStorage</code> is utilized solely for your convenience: saving theme preference (Light/Dark) and optional high-value warning limits.
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h5 class="font-semibold text-white">3. User Responsibility & Safety Warning</h5>
+              <p class="text-slate-400 leading-relaxed text-xs">
+                UPI transactions are instantaneous and irreversible. You are solely responsible for verifying the payee name and bank handle displayed on your phone's banking screen before entering your UPI PIN. We strongly recommend sending a ₹1 test payment to new payees first.
+              </p>
+            </div>
+            <div class="space-y-1">
+              <h5 class="font-semibold text-white">4. Terms of Use & Warranty Disclaimer</h5>
+              <p class="text-slate-400 leading-relaxed text-xs">
+                This tool is provided free of charge under the open-source MIT License on an "AS IS" basis, without warranty of any kind, express or implied. The author and contributors are not liable for any transaction errors, banking downtime, or unauthorized transfers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // State
+    let mode = 'batch';
+    let stage = 'paste';
+    let parsedRows = [];
+    let currentIndex = 0;
+    let currentTheme = localStorage.getItem('upi-terminal:theme') || 'dark';
+
+    function applyTheme(t) {
+      currentTheme = t;
+      document.body.classList.toggle('light', t === 'light');
+      document.body.classList.toggle('dark', t !== 'light');
+      const icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.setAttribute('data-lucide', t === 'light' ? 'moon' : 'sun');
+        lucide.createIcons();
+      }
+      try { localStorage.setItem('upi-terminal:theme', t); } catch(e) {}
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    // Apply theme on init
+    applyTheme(currentTheme);
+
+    const SAMPLE = `rahul.verma42@okaxis (Rahul Verma) ₹4,250
+9999991811@ybl - 1,200/-
+anita.sharma@upi 500
+rahul.verma42@okaxis ₹750
+Total: 6700`;
+
+    function loadSampleText() {
+      document.getElementById('paste-input').value = SAMPLE;
+      updateLineCount();
+    }
+
+    function updateLineCount() {
+      const txt = document.getElementById('paste-input').value;
+      const count = txt.split('\n').filter(l => l.trim()).length;
+      document.getElementById('line-count').innerText = `${count} lines`;
+    }
+
+    function setMode(m) {
+      mode = m;
+      document.getElementById('mode-batch-btn').className = m === 'batch' 
+        ? "px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
+        : "px-3 py-1.5 rounded-md text-xs font-medium bg-transparent text-slate-400 hover:text-white";
+      document.getElementById('mode-quick-btn').className = m === 'quick' 
+        ? "px-3 py-1.5 rounded-md text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
+        : "px-3 py-1.5 rounded-md text-xs font-medium bg-transparent text-slate-400 hover:text-white";
+      
+      document.getElementById('quick-view').classList.toggle('hidden', m !== 'quick');
+      document.getElementById('batch-paste-view').classList.toggle('hidden', m !== 'batch' || stage !== 'paste');
+      document.getElementById('batch-review-view').classList.toggle('hidden', m !== 'batch' || stage !== 'review');
+      document.getElementById('batch-pay-view').classList.toggle('hidden', m !== 'batch' || stage !== 'pay');
+      if (m === 'quick') updateQuickQr();
+    }
+
+    function setStage(s) {
+      stage = s;
+      setMode('batch');
+    }
+
+    // Pure client-side parsing regex
+    const vpaRe = /[A-Za-z0-9][A-Za-z0-9._-]{1,255}@[A-Za-z][A-Za-z0-9]{1,63}/g;
+    const phoneRe = /(?:\+?91[-\s]?|0)?([6-9]\d{9})/g;
+    const amountRe = /(?:₹|rs\.?|inr)?\s*([0-9]{1,3}(?:,[0-9]{2,3})+|[0-9]+(?:\.[0-9]{1,2})?)/i;
+
+    function cleanPastedText() {
+      const raw = document.getElementById('paste-input').value;
+      if (!raw.trim()) return;
+      const lines = raw.split('\n');
+      const entries = {};
+      let totalFound = 0;
+
+      lines.forEach((l, idx) => {
+        const text = l.trim();
+        if (!text || /^total\b/i.test(text)) return;
+        const vpas = text.match(vpaRe) || [];
+        const phones = text.match(phoneRe) || [];
+        const id = vpas[0] || phones[0];
+        if (!id) return;
+
+        const amtMatch = text.replace(id, '').match(amountRe);
+        if (!amtMatch) return;
+        const amt = parseFloat(amtMatch[1].replace(/,/g, ''));
+        if (isNaN(amt) || amt <= 0) return;
+
+        // Extract name in parentheses if any
+        let name = null;
+        const nameMatch = text.match(/\((.*?)\)/);
+        if (nameMatch) name = nameMatch[1].trim();
+
+        const key = id.toLowerCase();
+        if (!entries[key]) {
+          entries[key] = { id, name, amount: 0, lines: [], paid: false };
+        }
+        entries[key].amount += amt;
+        entries[key].lines.push(idx + 1);
+        if (name && !entries[key].name) entries[key].name = name;
+        totalFound += amt;
+      });
+
+      parsedRows = Object.values(entries);
+      if (parsedRows.length === 0) {
+        alert("No valid UPI IDs or amounts found in pasted text.");
+        return;
+      }
+
+      renderReview(totalFound);
+      setStage('review');
+    }
+
+    function renderReview(total) {
+      document.getElementById('rows-count').innerText = parsedRows.length;
+      document.getElementById('recon-banner').innerHTML = `
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs uppercase text-emerald-400 font-mono font-bold">Clean & Reconciled</span>
+            <p class="text-sm font-semibold text-white mt-1">Found ${parsedRows.length} recipients to pay, totaling ₹${total.toLocaleString('en-IN')}</p>
+          </div>
+          <div class="text-right font-mono">
+            <span class="text-2xl font-bold text-emerald-400">₹${total.toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+      `;
+
+      const tbody = document.getElementById('rows-table-body');
+      tbody.innerHTML = parsedRows.map((r, i) => `
+        <tr class="hover:bg-slate-800/40">
+          <td class="px-4 py-3 text-slate-500">${i + 1}</td>
+          <td class="px-4 py-3 font-semibold text-slate-200">${r.id}</td>
+          <td class="px-4 py-3 text-slate-400">${r.name || '—'}</td>
+          <td class="px-4 py-3 text-slate-500">Lines ${r.lines.join(', ')}</td>
+          <td class="px-4 py-3 text-right font-bold text-emerald-400">₹${r.amount.toLocaleString('en-IN')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function startPaying() {
+      if (parsedRows.length === 0) return;
+      currentIndex = 0;
+      setStage('pay');
+      renderPayScreen();
+    }
+
+    function getStatusText(r) {
+      if (r.paid) return "paid ✅";
+      if (r.failed) return r.failReason ? `Error: ${r.failReason}` : "Error";
+      return "Pending";
+    }
+
+    function renderPayScreen() {
+      const r = parsedRows[currentIndex];
+      if (!r) return;
+
+      const doneCount = parsedRows.filter(row => row.paid || row.failed).length;
+      const progressPct = parsedRows.length > 0 ? Math.round((doneCount / parsedRows.length) * 100) : 0;
+      const allDone = parsedRows.length > 0 && doneCount === parsedRows.length;
+
+      const pBar = document.getElementById('runner-progress-bar');
+      if (pBar) pBar.style.width = progressPct + '%';
+
+      document.getElementById('current-row-badge').innerHTML = `Recipient ${currentIndex + 1} of ${parsedRows.length} &middot; <span class="text-emerald-400 font-semibold">${doneCount}/${parsedRows.length} done (${progressPct}%)</span>`;
+      document.getElementById('pay-amount').innerText = `₹${r.amount.toLocaleString('en-IN')}`;
+      document.getElementById('pay-name').innerText = r.name || 'Recipient';
+      document.getElementById('pay-vpa').innerText = r.id;
+
+      // QR Link: standard NPCI spec
+      const upiUrl = `upi://pay?pa=${encodeURIComponent(r.id)}&pn=${encodeURIComponent(r.name || 'Batch Payout')}&am=${r.amount.toFixed(2)}&cu=INR&tn=Batch%20Payout`;
+      const qrEl = document.getElementById('pay-qrcode');
+      qrEl.innerHTML = '';
+      new QRCode(qrEl, { text: upiUrl, width: 220, height: 220 });
+
+      // Render Queue list
+      const queue = document.getElementById('pay-queue-list');
+      queue.innerHTML = parsedRows.map((row, i) => {
+        let badge = '<span class="text-slate-500">PENDING</span>';
+        let lineStyle = 'text-slate-200';
+        if (row.paid) {
+          badge = '<span class="text-emerald-400 font-bold">PAID ✅</span>';
+          lineStyle = 'line-through text-slate-500';
+        } else if (row.failed) {
+          badge = '<span class="text-red-400 font-bold">ERROR</span>';
+          lineStyle = 'text-red-300';
+        }
+        return `
+        <div onclick="selectRow(${i})" class="p-3 cursor-pointer flex items-center justify-between ${i === currentIndex ? 'bg-emerald-500/10 border-l-2 border-emerald-400' : 'hover:bg-slate-800/50'}">
+          <div>
+            <div class="font-bold ${lineStyle}">${row.id}</div>
+            <div class="text-[10px] text-slate-400">${row.name || (row.failReason ? `<span class="text-red-400">${row.failReason}</span>` : '')}</div>
+          </div>
+          <div class="text-right">
+            <div class="font-bold ${row.paid ? 'text-slate-500' : 'text-emerald-400'}">₹${row.amount}</div>
+            <div class="text-[10px]">${badge}</div>
+          </div>
+        </div>
+      `;
+      }).join('');
+
+      // Render Batch Completion Banner if all resolved
+      const compBanner = document.getElementById('batch-completion-banner');
+      if (compBanner) {
+        if (allDone) {
+          const paidRows = parsedRows.filter(row => row.paid);
+          const failedRows = parsedRows.filter(row => row.failed);
+          const paidTotal = paidRows.reduce((acc, row) => acc + row.amount, 0);
+          const failedTotal = failedRows.reduce((acc, row) => acc + row.amount, 0);
+          const successPct = Math.round((paidRows.length / parsedRows.length) * 100);
+
+          compBanner.classList.remove('hidden');
+          compBanner.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shrink-0 text-xl font-bold">✓</div>
+                <div>
+                  <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    All ${parsedRows.length} Payouts Resolved!
+                    <span class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">100% Processed</span>
+                  </h2>
+                  <p class="text-xs text-slate-400 mt-0.5">Every recipient in this batch has been scanned and marked.</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <button onclick="exportCsv()" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs flex items-center gap-1.5 shadow-xs"><i data-lucide="download" class="w-3.5 h-3.5"></i> Download Final CSV</button>
+                <button onclick="copyRows('paid')" class="px-3.5 py-2 rounded-lg border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 text-xs flex items-center gap-1.5"><i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Paid (${paidRows.length})</button>
+                <button onclick="resetBatch()" class="px-3.5 py-2 rounded-lg border border-border text-slate-400 hover:text-red-400 hover:bg-red-500/10 text-xs flex items-center gap-1.5"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Start New Batch</button>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-border/80 pt-3 font-mono text-xs">
+              <div class="rounded-xl border border-border/60 bg-slate-900/60 p-2.5">
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Paid Volume</span>
+                <p class="mt-0.5 text-base font-bold text-emerald-400">₹${paidTotal.toLocaleString('en-IN')}</p>
+                <p class="text-[10px] text-slate-400">${paidRows.length} successful</p>
+              </div>
+              <div class="rounded-xl border border-border/60 bg-slate-900/60 p-2.5">
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Success Rate</span>
+                <p class="mt-0.5 text-base font-bold text-white">${successPct}%</p>
+                <p class="text-[10px] text-slate-400">${paidRows.length} of ${parsedRows.length} cleared</p>
+              </div>
+              <div class="rounded-xl border border-border/60 bg-slate-900/60 p-2.5">
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Errors / Declined</span>
+                <p class="mt-0.5 text-base font-bold ${failedRows.length > 0 ? 'text-red-400' : 'text-slate-400'}">₹${failedTotal.toLocaleString('en-IN')}</p>
+                <p class="text-[10px] text-slate-400">${failedRows.length} failed</p>
+              </div>
+              <div class="rounded-xl border border-border/60 bg-slate-900/60 p-2.5">
+                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Total Batch</span>
+                <p class="mt-0.5 text-base font-bold text-white">${parsedRows.length} rows</p>
+                <p class="text-[10px] text-slate-400">₹${(paidTotal + failedTotal).toLocaleString('en-IN')} total</p>
+              </div>
+            </div>
+          `;
+          if (window.lucide) lucide.createIcons();
+        } else {
+          compBanner.classList.add('hidden');
+        }
+      }
+    }
+
+    function selectRow(i) {
+      currentIndex = i;
+      renderPayScreen();
+    }
+
+    function markCurrentPaid() {
+      if (parsedRows[currentIndex]) {
+        parsedRows[currentIndex].paid = true;
+        parsedRows[currentIndex].failed = false;
+        parsedRows[currentIndex].failReason = null;
+        if (currentIndex < parsedRows.length - 1) currentIndex++;
+        renderPayScreen();
+      }
+    }
+
+    function markCurrentFailed() {
+      if (parsedRows[currentIndex]) {
+        const reason = prompt("Enter failure/error reason:", "Bank server down / UPI declined") || "Payment failed";
+        parsedRows[currentIndex].paid = false;
+        parsedRows[currentIndex].failed = true;
+        parsedRows[currentIndex].failReason = reason;
+        if (currentIndex < parsedRows.length - 1) currentIndex++;
+        renderPayScreen();
+      }
+    }
+
+    function undoCurrentPaid() {
+      if (parsedRows[currentIndex]) {
+        parsedRows[currentIndex].paid = false;
+        parsedRows[currentIndex].failed = false;
+        parsedRows[currentIndex].failReason = null;
+        renderPayScreen();
+      }
+    }
+
+    function copyRows(filter = 'all') {
+      let list = parsedRows;
+      if (filter === 'paid') list = parsedRows.filter(r => r.paid);
+      if (filter === 'failed') list = parsedRows.filter(r => r.failed);
+      if (!list.length) {
+        alert(`No ${filter} rows to copy.`);
+        return;
+      }
+      const text = list.map(r => `${r.id}\t₹${r.amount.toLocaleString('en-IN')}\t${getStatusText(r)}`).join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        alert(`Copied ${list.length} ${filter} rows (UPI ID, Amount, Status) to clipboard!\n\nPaste into Excel, Sheets, or Chat.`);
+      });
+    }
+
+    function nextRow() {
+      if (currentIndex < parsedRows.length - 1) {
+        currentIndex++;
+        renderPayScreen();
+      }
+    }
+
+    function prevRow() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderPayScreen();
+      }
+    }
+
+    function resetBatch() {
+      if (confirm("Clear this payout batch and start fresh?")) {
+        parsedRows = [];
+        currentIndex = 0;
+        const input = document.getElementById('paste-input');
+        if (input) input.value = '';
+        setStage('paste');
+      }
+    }
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (stage !== 'pay') return;
+      if (e.key === 'Enter') markCurrentPaid();
+      if (e.key === 'e' || e.key === 'E') markCurrentFailed();
+      if (e.key === 'u' || e.key === 'U') undoCurrentPaid();
+      if (e.key === 'ArrowRight') nextRow();
+      if (e.key === 'ArrowLeft') prevRow();
+    });
+
+    // Quick QR Handler, Share Links & Advanced Standee Card Generator
+    let currentQuickUpiUrl = '';
+    let currentQuickShareLink = '';
+    let currentQuickData = { vpa: '', amt: null, name: '', note: '' };
+
+    function getQuickShareUrl(vpa, amt, note) {
+      const isFile = window.location.protocol === 'file:';
+      const prefix = isFile ? '/#/pay/' : '/pay/';
+      const base = window.location.origin + prefix + encodeURIComponent(vpa);
+      const withAmt = amt ? base + '/' + encodeURIComponent(amt) : base;
+      return note ? withAmt + '/' + encodeURIComponent(note) : withAmt;
+    }
+
+    function updateQuickQr() {
+      const vpa = document.getElementById('q-vpa').value.trim();
+      const amtVal = document.getElementById('q-amt').value.trim();
+      const amt = parseFloat(amtVal);
+      const hasAmt = Boolean(amtVal && !isNaN(amt) && amt > 0);
+      const name = document.getElementById('q-name').value.trim();
+      const note = document.getElementById('q-note').value.trim();
+      const container = document.getElementById('quick-qrcode-container');
+      const info = document.getElementById('quick-info');
+      const shareActions = document.getElementById('quick-share-actions');
+
+      if (!vpa || !vpa.includes('@')) {
+        container.innerHTML = '<div class="w-48 h-48 flex items-center justify-center text-slate-400 font-mono text-xs">Enter valid UPI ID (e.g. name@bank)</div>';
+        info.innerText = 'Enter a valid UPI ID (e.g. name@bank)';
+        if (shareActions) shareActions.classList.add('hidden');
+        currentQuickUpiUrl = '';
+        currentQuickShareLink = '';
+        currentQuickData = { vpa: '', amt: null, name: '', note: '' };
+        return;
+      }
+
+      const base = `pa=${encodeURIComponent(vpa)}&pn=${encodeURIComponent(name || 'Payee')}&cu=INR`;
+      const am = hasAmt ? `&am=${amt.toFixed(2)}` : '';
+      const tn = note ? `&tn=${encodeURIComponent(note)}` : '';
+      currentQuickUpiUrl = `upi://pay?${base}${am}${tn}`;
+      currentQuickShareLink = getQuickShareUrl(vpa, hasAmt ? amt : '', note);
+      currentQuickData = { vpa, amt: hasAmt ? amt : null, name, note };
+
+      container.innerHTML = '';
+      new QRCode(container, { text: currentQuickUpiUrl, width: 220, height: 220 });
+      info.innerText = hasAmt ? `${vpa} • ₹${amt.toLocaleString('en-IN')}` : `${vpa} • Any amount`;
+      if (shareActions) shareActions.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Helper: Image loader
+    function loadImgAsync(src) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+    }
+
+    // Helper: Rounded rect on canvas
+    function drawCanvasRoundRect(g, x, y, w, h, r, fill, stroke, strokeWidth = 1) {
+      g.beginPath();
+      if (typeof g.roundRect === 'function') {
+        g.roundRect(x, y, w, h, r);
+      } else {
+        g.moveTo(x + r, y);
+        g.arcTo(x + w, y, x + w, y + h, r);
+        g.arcTo(x + w, y + h, x, y + h, r);
+        g.arcTo(x, y + h, x, y, r);
+        g.arcTo(x, y + w, y, r);
+        g.closePath();
+      }
+      if (fill) { g.fillStyle = fill; g.fill(); }
+      if (stroke) { g.strokeStyle = stroke; g.lineWidth = strokeWidth; g.stroke(); }
+    }
+
+    // Helper: Focus corner brackets
+    function drawCanvasCornerBrackets(g, x, y, size, bracketLen = 24, color = "#10B981", lineWidth = 4) {
+      g.save();
+      g.strokeStyle = color;
+      g.lineWidth = lineWidth;
+      g.lineCap = "round";
+      g.beginPath(); g.moveTo(x, y + bracketLen); g.lineTo(x, y); g.lineTo(x + bracketLen, y); g.stroke();
+      g.beginPath(); g.moveTo(x + size - bracketLen, y); g.lineTo(x + size, y); g.lineTo(x + size, y + bracketLen); g.stroke();
+      g.beginPath(); g.moveTo(x, y + size - bracketLen); g.lineTo(x, y + size); g.lineTo(x + bracketLen, y + size); g.stroke();
+      g.beginPath(); g.moveTo(x + size - bracketLen, y + size); g.lineTo(x + size, y + size); g.lineTo(x + size, y + size - bracketLen); g.stroke();
+      g.restore();
+    }
+
+    // Advanced Merchant Standee Card Builder (Mirrors /pay/ layout exactly)
+    async function buildStandeeCardCanvas(customData, qrContainerId = 'quick-qrcode-container') {
+      const data = customData || currentQuickData;
+      const { vpa, amt, name, note } = data;
+      if (!vpa) return null;
+      const hasAmt = Boolean(amt && !isNaN(amt) && amt > 0);
+      const hasRealName = Boolean(name && name.trim() && name.trim().toLowerCase() !== vpa.trim().toLowerCase());
+      const hasNote = Boolean(note && note.trim());
+
+      const W = 800;
+      let H = 880;
+      if (hasRealName) H += 32;
+      if (hasAmt) H += 100;
+      if (hasNote) H += 30;
+
+      const c = document.createElement('canvas');
+      c.width = W;
+      c.height = H;
+      const g = c.getContext('2d');
+      if (!g) return null;
+
+      // 1. Crisp White Card Background
+      g.fillStyle = '#FFFFFF';
+      g.fillRect(0, 0, W, H);
+      drawCanvasRoundRect(g, 16, 16, W - 32, H - 32, 28, '#FFFFFF', '#E2E8F0', 1.5);
+
+      // 2. Top Header Accent Stripe
+      g.fillStyle = '#059669';
+      if (typeof g.roundRect === 'function') {
+        g.beginPath();
+        g.roundRect(16, 16, W - 32, 6, [28, 28, 0, 0]);
+        g.fill();
+      } else {
+        g.fillRect(16, 16, W - 32, 6);
+      }
+
+      // 3. Load official brand logos: BHIM, UPI, GPay, PhonePe, Paytm (NO Amazon Pay)
+      const [bhimLogo, upiLogo, gpayLogo, phonepeLogo, paytmLogo] = await Promise.all([
+        loadImgAsync('bhim.svg'),
+        loadImgAsync('upi.svg'),
+        loadImgAsync('gpay.svg'),
+        loadImgAsync('phonepe.svg'),
+        loadImgAsync('paytm.svg'),
+      ]);
+
+      // 4. QR Code Showcase Container at the TOP
+      const qrBoxSize = 420;
+      const qrBoxX = (W - qrBoxSize) / 2;
+      const qrBoxY = 48;
+      drawCanvasRoundRect(g, qrBoxX, qrBoxY, qrBoxSize, qrBoxSize, 24, '#FFFFFF', '#F1F5F9', 2);
+      drawCanvasCornerBrackets(g, qrBoxX + 16, qrBoxY + 16, qrBoxSize - 32, 28, '#10B981', 4);
+
+      // Retrieve rendered QR from container
+      const qContainer = document.getElementById(qrContainerId);
+      const qCanvas = qContainer ? (qContainer.querySelector('canvas') || qContainer.querySelector('img')) : null;
+      if (qCanvas) {
+        const qrPad = 36;
+        g.drawImage(qCanvas, qrBoxX + qrPad, qrBoxY + qrPad, qrBoxSize - qrPad * 2, qrBoxSize - qrPad * 2);
+      }
+
+      let currY = qrBoxY + qrBoxSize + 24;
+      g.textAlign = 'center';
+      g.font = "500 13px 'IBM Plex Sans', sans-serif";
+      g.fillStyle = "#64748B";
+      g.fillText("Point your phone camera or open any UPI app to scan", W / 2, currY);
+
+      // 5. Downside to QR Code: Paying To & Centered UPI ID (Never duplicated!)
+      currY += 34;
+      g.font = "700 11px 'IBM Plex Sans', sans-serif";
+      g.fillStyle = "#64748B";
+      g.fillText("PAYING TO", W / 2, currY);
+
+      if (hasRealName) {
+        currY += 28;
+        g.font = "700 24px 'IBM Plex Sans', sans-serif";
+        g.fillStyle = "#0F172A";
+        g.fillText(name.slice(0, 34), W / 2, currY);
+      }
+
+      // UPI ID Pill (clean, centered, single occurrence)
+      currY += 28;
+      g.font = "600 22px 'JetBrains Mono', monospace";
+      const idText = vpa.slice(0, 42);
+      const idPillW = Math.max(260, g.measureText(idText).width + 48);
+      const idPillH = 42;
+      const idPillX = (W - idPillW) / 2;
+      drawCanvasRoundRect(g, idPillX, currY - 26, idPillW, idPillH, 10, "#F8FAFC", "#E2E8F0", 1);
+
+      g.font = "600 20px 'JetBrains Mono', monospace";
+      g.fillStyle = "#1E293B";
+      g.textAlign = "center";
+      g.fillText(idText, W / 2, currY);
+
+      currY += 26;
+
+      // 6. Amount Box (ONLY rendered if valid amount is specified!)
+      if (hasAmt) {
+        currY += 12;
+        const amtBoxW = 380;
+        const amtBoxH = 82;
+        const amtBoxX = (W - amtBoxW) / 2;
+        drawCanvasRoundRect(g, amtBoxX, currY, amtBoxW, amtBoxH, 14, "#F0FDF4", "#86EFAC", 1.5);
+
+        g.font = "700 11px 'IBM Plex Sans', sans-serif";
+        g.fillStyle = "#059669";
+        g.fillText("AMOUNT TO PAY", W / 2, currY + 24);
+
+        g.font = "800 38px 'JetBrains Mono', monospace";
+        g.fillStyle = "#047857";
+        g.fillText(`₹${amt.toLocaleString('en-IN')}`, W / 2, currY + 63);
+        currY += amtBoxH + 14;
+      }
+
+      // 7. Payment Note (if present)
+      if (hasNote) {
+        currY += 6;
+        g.font = "italic 500 15px 'IBM Plex Sans', sans-serif";
+        g.fillStyle = "#64748B";
+        g.fillText(`“${note.slice(0, 44)}”`, W / 2, currY);
+        currY += 20;
+      }
+
+      // 8. Downside: Official BHIM UPI Brand Strip Box
+      currY += 14;
+      const brandBoxW = 440;
+      const brandBoxH = 146;
+      const brandBoxX = (W - brandBoxW) / 2;
+      drawCanvasRoundRect(g, brandBoxX, currY, brandBoxW, brandBoxH, 16, "#F8FAFC", "#E2E8F0", 1);
+
+      g.font = "700 11px 'IBM Plex Sans', sans-serif";
+      g.fillStyle = "#64748B";
+      g.fillText("SCAN & PAY WITH ANY UPI APP", W / 2, currY + 24);
+
+      // Brand Strip Row 1: BHIM | UPI
+      const midX = W / 2;
+      const bTopY = currY + 38;
+
+      if (bhimLogo) {
+        g.drawImage(bhimLogo, midX - 20 - 112, bTopY + 2, 112, 25);
+      } else {
+        g.font = "700 20px 'IBM Plex Sans', sans-serif";
+        g.fillStyle = "#088B45";
+        g.fillText("BHIM", midX - 60, bTopY + 20);
+      }
+
+      g.strokeStyle = "#CBD5E1";
+      g.lineWidth = 1.5;
+      g.beginPath();
+      g.moveTo(midX, bTopY + 2);
+      g.lineTo(midX, bTopY + 28);
+      g.stroke();
+
+      if (upiLogo) {
+        g.drawImage(upiLogo, midX + 20, bTopY, 86, 30);
+      } else {
+        g.font = "700 20px 'IBM Plex Sans', sans-serif";
+        g.fillStyle = "#E9661C";
+        g.fillText("UPI", midX + 50, bTopY + 20);
+      }
+
+      // Brand Strip Row 2: GPay, PhonePe, Paytm
+      const appPillY = bTopY + 40;
+      const pillW = 96;
+      const pillH = 34;
+      const pillGap = 12;
+      const totalPillsW = pillW * 3 + pillGap * 2;
+      const pillStartX = (W - totalPillsW) / 2;
+
+      // Google Pay
+      drawCanvasRoundRect(g, pillStartX, appPillY, pillW, pillH, 8, "#FFFFFF", "#E2E8F0", 1);
+      if (gpayLogo) g.drawImage(gpayLogo, pillStartX + (pillW - 60) / 2, appPillY + (pillH - 19) / 2, 60, 19);
+
+      // PhonePe
+      const phonepeX = pillStartX + pillW + pillGap;
+      drawCanvasRoundRect(g, phonepeX, appPillY, pillW, pillH, 8, "#FFFFFF", "#E2E8F0", 1);
+      if (phonepeLogo) g.drawImage(phonepeLogo, phonepeX + (pillW - 72) / 2, appPillY + (pillH - 21) / 2, 72, 21);
+
+      // Paytm
+      const paytmX = phonepeX + pillW + pillGap;
+      drawCanvasRoundRect(g, paytmX, appPillY, pillW, pillH, 8, "#FFFFFF", "#E2E8F0", 1);
+      if (paytmLogo) g.drawImage(paytmLogo, paytmX + (pillW - 64) / 2, appPillY + (pillH - 19) / 2, 64, 19);
+
+      // 9. Footer Trust Bar
+      const footerDividerY = H - 68;
+      g.strokeStyle = "#E2E8F0";
+      g.lineWidth = 1;
+      g.beginPath();
+      g.moveTo(60, footerDividerY);
+      g.lineTo(W - 60, footerDividerY);
+      g.stroke();
+
+      g.textAlign = "center";
+      g.font = "600 12px 'IBM Plex Sans', sans-serif";
+      g.fillStyle = "#475569";
+      g.fillText("UPI Pay · Open source client-side payment tool • zero backend servers", W / 2, H - 44);
+
+      g.font = "400 11px 'IBM Plex Sans', sans-serif";
+      g.fillStyle = "#94A3B8";
+      g.fillText("Built with ❤️ by Rohit Kumar Ranjan • rohitkumarranjan.in", W / 2, H - 24);
+
+      return c;
+    }
+
+    // Client-Side PDF Generator for Standee Documents
+    function buildPdfFromJpeg(jpegBytes, imgWidth, imgHeight) {
+      const pageW = 595.28;
+      const pageH = 841.89;
+      const margin = 36;
+      const maxW = pageW - margin * 2;
+      const maxH = pageH - margin * 2;
+      const aspect = imgWidth / imgHeight;
+      let fitW = maxW;
+      let fitH = fitW / aspect;
+      if (fitH > maxH) {
+        fitH = maxH;
+        fitW = fitH * aspect;
+      }
+      const posX = (pageW - fitW) / 2;
+      const posY = (pageH - fitH) / 2;
+
+      const encoder = new TextEncoder();
+      const chunks = [];
+      const offsets = [];
+      let currentOffset = 0;
+      function write(str) {
+        const bytes = encoder.encode(str);
+        chunks.push(bytes);
+        currentOffset += bytes.length;
+      }
+      function writeBytes(bytes) {
+        chunks.push(bytes);
+        currentOffset += bytes.length;
+      }
+
+      write("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
+      offsets[1] = currentOffset;
+      write("1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n");
+      offsets[2] = currentOffset;
+      write("2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n");
+      offsets[3] = currentOffset;
+      write(`3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW.toFixed(2)} ${pageH.toFixed(2)}] /Resources << /XObject << /Im1 5 0 R >> /ProcSet [/PDF /ImageC] >> /Contents 4 0 R >>\nendobj\n`);
+      const contentOps = `q\n${fitW.toFixed(2)} 0 0 ${fitH.toFixed(2)} ${posX.toFixed(2)} ${posY.toFixed(2)} cm\n/Im1 Do\nQ\n`;
+      const contentBytes = encoder.encode(contentOps);
+      offsets[4] = currentOffset;
+      write(`4 0 obj\n<< /Length ${contentBytes.length} >>\nstream\n`);
+      writeBytes(contentBytes);
+      write("\nendstream\nendobj\n");
+      offsets[5] = currentOffset;
+      write(`5 0 obj\n<< /Type /XObject /Subtype /Image /Width ${imgWidth} /Height ${imgHeight} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpegBytes.length} >>\nstream\n`);
+      writeBytes(jpegBytes);
+      write("\nendstream\nendobj\n");
+      const startXref = currentOffset;
+      write("xref\n0 6\n0000000000 65535 f \n");
+      for (let i = 1; i <= 5; i++) {
+        write(`${String(offsets[i]).padStart(10, "0")} 00000 n \n`);
+      }
+      write(`trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${startXref}\n%%EOF\n`);
+      const totalLen = chunks.reduce((acc, c) => acc + c.length, 0);
+      const out = new Uint8Array(totalLen);
+      let pos = 0;
+      for (const chunk of chunks) {
+        out.set(chunk, pos);
+        pos += chunk.length;
+      }
+      return out;
+    }
+
+    function downloadBlobDirect(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function downloadQuickCard() {
+      const canvas = await buildStandeeCardCanvas();
+      if (!canvas) {
+        alert("Please enter a valid UPI ID first.");
+        return;
+      }
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const safe = (currentQuickData.vpa || 'pay').replace(/[^a-z0-9]+/gi, '-');
+        downloadBlobDirect(blob, `upi-pay-${safe}.png`);
+      }, 'image/png');
+    }
+
+    async function copyQuickCardImage() {
+      const canvas = await buildStandeeCardCanvas();
+      if (!canvas) {
+        alert("Please enter a valid UPI ID first.");
+        return;
+      }
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        try {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          alert("Merchant QR image copied to clipboard! Paste it into WhatsApp or Slack.");
+        } catch {
+          downloadQuickCard();
+        }
+      }, 'image/png');
+    }
+
+    function openQuickPayLink() {
+      if (!currentQuickShareLink) return;
+      window.open(currentQuickShareLink, '_blank', 'noopener,noreferrer');
+    }
+
+    function copyQuickShareLink() {
+      if (!currentQuickShareLink) return;
+      navigator.clipboard.writeText(currentQuickShareLink).then(() => {
+        alert("Payment link copied to clipboard!\n\n" + currentQuickShareLink);
+      }).catch(() => {
+        prompt("Copy this link:", currentQuickShareLink);
+      });
+    }
+
+    function shareQuickLink() {
+      if (!currentQuickShareLink) return;
+      if (navigator.share) {
+        navigator.share({
+          title: "UPI Payment Request",
+          text: `Pay ${currentQuickData.vpa} via UPI`,
+          url: currentQuickShareLink
+        }).catch(() => {});
+      } else {
+        copyQuickShareLink();
+      }
+    }
+
+    // Shareable landing route handling (/#/pay/:vpa/:amt?/:desc?)
+    let landingUpiUri = '';
+    let currentLandingData = { vpa: '', amt: null, name: '', note: '' };
+
+    async function downloadLandingCard(format = 'pdf') {
+      if (!currentLandingData.vpa) {
+        alert("Payment details not found");
+        return;
+      }
+      const canvas = await buildStandeeCardCanvas(currentLandingData, 'landing-qrcode');
+      if (!canvas) {
+        alert("Could not generate payment standee");
+        return;
+      }
+      const safe = (currentLandingData.vpa || 'pay').replace(/[^a-z0-9]+/gi, '-');
+
+      if (format === 'pdf') {
+        canvas.toBlob(async (blob) => {
+          if (!blob) return;
+          const buffer = await blob.arrayBuffer();
+          const pdfBytes = buildPdfFromJpeg(new Uint8Array(buffer), canvas.width, canvas.height);
+          const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+          downloadBlobDirect(pdfBlob, `upi-pay-${safe}.pdf`);
+        }, 'image/jpeg', 0.95);
+      } else if (format === 'jpg' || format === 'jpeg') {
+        canvas.toBlob((blob) => {
+          if (!blob) return;
+          downloadBlobDirect(blob, `upi-pay-${safe}.jpg`);
+        }, 'image/jpeg', 0.95);
+      } else {
+        canvas.toBlob((blob) => {
+          if (!blob) return;
+          downloadBlobDirect(blob, `upi-pay-${safe}.png`);
+        }, 'image/png');
+      }
+    }
+
+    function toggleLandingDownloadMenu(force) {
+      const menu = document.getElementById('landing-download-menu');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      const show = typeof force === 'boolean' ? force : isHidden;
+      menu.classList.toggle('hidden', !show);
+    }
+
+    async function shareLandingWithImageAndLink() {
+      const shareUrl = window.location.href;
+      const vpa = currentLandingData.vpa || 'Pay';
+      const amtStr = currentLandingData.amt ? `₹${currentLandingData.amt.toLocaleString('en-IN')}` : '';
+      const title = `Pay ${amtStr || 'via UPI'} to ${vpa}`;
+      const text = `Scan the QR code or tap this link to pay ${amtStr ? amtStr + ' ' : ''}to ${vpa}${currentLandingData.note ? ` (${currentLandingData.note})` : ''}:\n${shareUrl}`;
+
+      try {
+        const canvas = await buildStandeeCardCanvas(currentLandingData, 'landing-qrcode');
+        if (canvas) {
+          canvas.toBlob(async (blob) => {
+            if (!blob) {
+              fallbackShare(title, text, shareUrl);
+              return;
+            }
+            const safe = vpa.replace(/[^a-z0-9]+/gi, '-');
+            const file = new File([blob], `upi-pay-${safe}.png`, { type: 'image/png' });
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+              try {
+                await navigator.share({
+                  title,
+                  text,
+                  url: shareUrl,
+                  files: [file]
+                });
+                return;
+              } catch (e) {
+                if (e.name === 'AbortError') return;
+              }
+            }
+            fallbackShare(title, text, shareUrl);
+          }, 'image/png');
+          return;
+        }
+      } catch (e) {
+        // Fallback below
+      }
+      fallbackShare(title, text, shareUrl);
+    }
+
+    function fallbackShare(title, text, url) {
+      if (navigator.share) {
+        navigator.share({ title, text, url }).catch((e) => {
+          if (e.name !== 'AbortError') copyFallback(url);
+        });
+      } else {
+        copyFallback(url);
+      }
+    }
+
+    function copyFallback(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert("Payment link copied to clipboard!");
+      });
+    }
+
+    function copyLandingUpiId() {
+      if (currentLandingData.vpa) {
+        navigator.clipboard.writeText(currentLandingData.vpa).then(() => {
+          alert("UPI ID copied to clipboard!");
+        });
+      }
+    }
+
+    function shareLandingLink() {
+      shareLandingWithImageAndLink();
+    }
+
+    window.addEventListener('click', (e) => {
+      const menu = document.getElementById('landing-download-menu');
+      const btn = document.getElementById('landing-download-btn');
+      if (menu && !menu.classList.contains('hidden')) {
+        if (!menu.contains(e.target) && !btn?.contains(e.target)) {
+          menu.classList.add('hidden');
+        }
+      }
+    });
+
+    function openInfoModal(tab = 'faq') {
+      const modal = document.getElementById('info-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        setInfoTab(tab);
+        lucide.createIcons();
+      }
+    }
+
+    function closeInfoModal() {
+      const modal = document.getElementById('info-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function setInfoTab(tab) {
+      ['faq', 'about', 'privacy'].forEach(t => {
+        const content = document.getElementById(`tab-content-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (content) content.classList.toggle('hidden', t !== tab);
+        if (btn) {
+          if (t === tab) {
+            btn.className = "flex-1 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center gap-1.5";
+          } else {
+            btn.className = "flex-1 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-white flex items-center justify-center gap-1.5";
+          }
+        }
+      });
+      lucide.createIcons();
+    }
+
+    function exitToQuickQr(e) {
+      if (e) e.preventDefault();
+      window.location.hash = '#quickqr';
+      checkHashRoute();
+    }
+
+    function checkHashRoute() {
+      const hash = (window.location.hash || '').toLowerCase();
+      const path = (window.location.pathname || '').toLowerCase();
+
+      if (hash === '#about' || hash === '#/about' || path === '/about') {
+        openInfoModal('about');
+        return;
+      }
+      if (hash === '#faq' || hash === '#/faq' || path === '/faq') {
+        openInfoModal('faq');
+        return;
+      }
+      if (hash === '#privacy' || hash === '#/privacy' || path === '/privacy') {
+        openInfoModal('privacy');
+        return;
+      }
+
+      let payMatch = null;
+      if (path.includes('/pay/')) {
+        payMatch = path.slice(path.indexOf('/pay/') + 5).split('/');
+      } else if (hash.startsWith('#/pay/')) {
+        payMatch = hash.slice(6).split('/');
+      }
+
+      if (payMatch) {
+        const vpa = decodeURIComponent(payMatch[0] || '');
+        const amt = payMatch[1] ? decodeURIComponent(payMatch[1]) : '';
+        const desc = payMatch[2] ? decodeURIComponent(payMatch[2]) : '';
+        if (vpa) {
+          renderLandingView(vpa, amt, desc);
+          return;
+        }
+      }
+
+      if (path.endsWith('/quickqr') || path.endsWith('/quick') || hash === '#quickqr' || hash === '#/quickqr' || hash === '#quick' || hash === '#/quick') {
+        document.getElementById('pay-landing-view')?.classList.add('hidden');
+        setMode('quick');
+        return;
+      }
+      // If not on pay landing, restore regular view
+      document.getElementById('pay-landing-view')?.classList.add('hidden');
+      setMode(mode);
+    }
+
+    function renderLandingView(vpa, amt, desc) {
+      // Hide all standard terminal views
+      document.getElementById('quick-view')?.classList.add('hidden');
+      document.getElementById('batch-paste-view')?.classList.add('hidden');
+      document.getElementById('batch-review-view')?.classList.add('hidden');
+      document.getElementById('batch-pay-view')?.classList.add('hidden');
+
+      const landing = document.getElementById('pay-landing-view');
+      landing.classList.remove('hidden');
+
+      const amtNum = parseFloat(amt);
+      const hasAmt = !isNaN(amtNum) && amtNum > 0;
+      const displayAmt = hasAmt ? `₹${amtNum.toLocaleString('en-IN')}` : '';
+
+      document.getElementById('landing-desc').innerText = desc ? desc : '';
+      document.getElementById('landing-upi-id').innerText = vpa;
+      const amtContainer = document.getElementById('landing-amount-container');
+      if (amtContainer) {
+        amtContainer.style.display = hasAmt ? 'block' : 'none';
+        if (hasAmt) document.getElementById('landing-amount').innerText = displayAmt;
+      }
+      const payBtnText = document.getElementById('landing-pay-btn-text');
+      if (payBtnText) payBtnText.innerText = hasAmt ? `Pay ${displayAmt}` : 'Pay Now';
+
+      // Build standard NPCI URI
+      const base = `pa=${encodeURIComponent(vpa)}&pn=${encodeURIComponent(vpa)}&cu=INR`;
+      const am = hasAmt ? `&am=${amtNum.toFixed(2)}` : '';
+      const tn = desc ? `&tn=${encodeURIComponent(desc)}` : '';
+      landingUpiUri = `upi://pay?${base}${am}${tn}`;
+      currentLandingData = { vpa, amt: hasAmt ? amtNum : null, name: '', note: desc };
+
+      // Generate QR
+      const qrContainer = document.getElementById('landing-qrcode');
+      qrContainer.innerHTML = '';
+      new QRCode(qrContainer, { text: landingUpiUri, width: 200, height: 200 });
+      lucide.createIcons();
+    }
+
+    function launchDefaultUpi() {
+      if (!landingUpiUri) return;
+      window.location.href = landingUpiUri;
+    }
+
+    function exitLandingView() {
+      window.location.hash = '';
+      checkHashRoute();
+    }
+
+    window.addEventListener('hashchange', checkHashRoute);
+
+    // Excel / CSV upload
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        const data = new Uint8Array(evt.target.result);
+        const wb = XLSX.read(data, { type: 'array' });
+        const firstSheet = wb.Sheets[wb.SheetNames[0]];
+        const csv = XLSX.utils.sheet_to_csv(firstSheet);
+        document.getElementById('paste-input').value = csv;
+        cleanPastedText();
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    function exportCsv() {
+      if (!parsedRows.length) return;
+      // First 3 columns: UPI ID, Amount (INR), Status. Followed by Name, Lines.
+      let csv = "UPI ID,Amount (INR),Status,Name,Lines\n";
+      parsedRows.forEach(r => {
+        csv += `"${r.id}",${r.amount},"${getStatusText(r)}","${r.name || ''}","${r.lines.join(';')}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `upi-payout-run-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+    }
+
+    function clearBatch() {
+      if (confirm("Reset current batch?")) {
+        parsedRows = [];
+        document.getElementById('paste-input').value = '';
+        setStage('paste');
+      }
+    }
+
+    function toggleSettings() {
+      alert("Settings: 100% Client-side. Everything is processed directly in your browser. No backend required!");
+    }
+
+    // Init icons
+    lucide.createIcons();
+    updateLineCount();
+    checkHashRoute();
+  </script>
+</body>
+</html>
+

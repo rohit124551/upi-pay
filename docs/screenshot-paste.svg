@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#090D16" />
+      <stop offset="50%" stop-color="#0E1726" />
+      <stop offset="100%" stop-color="#060911" />
+    </linearGradient>
+    <linearGradient id="saffronG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFA133" />
+      <stop offset="50%" stop-color="#F17A21" />
+      <stop offset="100%" stop-color="#C24E00" />
+    </linearGradient>
+    <linearGradient id="emeraldG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="50%" stop-color="#088B45" />
+      <stop offset="100%" stop-color="#04562B" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1000" height="580" fill="url(#bgG)" />
+
+  <!-- Top Navigation Bar -->
+  <rect width="1000" height="54" fill="#0D131F" stroke="#1E293B" stroke-width="1" />
+  
+  <!-- Browser Window Controls -->
+  <g transform="translate(24, 21)">
+    <circle cx="0" cy="0" r="4.5" fill="#EF4444" />
+    <circle cx="15" cy="0" r="4.5" fill="#F59E0B" />
+    <circle cx="30" cy="0" r="4.5" fill="#10B981" />
+  </g>
+
+  <!-- Brand Logo & Badge in Navbar -->
+  <g transform="translate(80, 10)">
+    <!-- Logo Badge Box -->
+    <rect x="0" y="0" width="34" height="34" rx="8" fill="#161F30" stroke="#334155" />
+    <g transform="translate(4, 3) scale(0.48)">
+      <path d="M18.8 6.2C19.8 4.2 22.4 3.6 24.2 4.9L39.8 16.5C41.8 18 42.4 20.8 41.2 22.9L22.2 56.4C21.1 58.4 18.5 59 16.7 57.7L8.8 51.8C6.8 50.3 6.3 47.5 7.5 45.4L22.6 18.6C23.1 17.7 22.8 16.6 22 16L18.8 13.6C17 12.3 16.6 9.8 17.8 7.9L18.8 6.2Z" fill="url(#saffronG)" />
+      <path d="M32.8 6.2C33.8 4.2 36.4 3.6 38.2 4.9L49.8 13.6C51.6 15 52 17.5 50.8 19.5L34.4 48.6C33.2 50.7 30.6 51.3 28.8 50L20.8 44.1C18.8 42.6 18.3 39.8 19.5 37.7L36.6 7.5C36.9 7 36.6 6.4 36 6L32.8 6.2Z" fill="url(#emeraldG)" />
+    </g>
+
+    <!-- Brand Name (Safe Offset at x=44, No Overlap) -->
+    <text x="44" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" letter-spacing="-0.5">
+      <tspan fill="url(#saffronG)">UPI</tspan>
+      <tspan fill="url(#emeraldG)" dx="4">Pay</tspan>
+    </text>
+
+    <!-- 100% Private Badge -->
+    <rect x="145" y="6" width="105" height="22" rx="11" fill="#065F46" fill-opacity="0.3" stroke="#10B981" stroke-opacity="0.4" />
+    <circle cx="156" cy="17" r="3" fill="#34D399" />
+    <text x="165" y="21" font-family="monospace" font-size="9" font-weight="700" fill="#34D399" letter-spacing="0.5">100% PRIVATE</text>
+  </g>
+
+  <!-- Nav Right Mode Links -->
+  <g transform="translate(640, 14)">
+    <!-- Step 1 Active Pill -->
+    <rect x="0" y="0" width="105" height="26" rx="6" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-opacity="0.4" />
+    <text x="52" y="17" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#34D399" text-anchor="middle">Step 1: Paste</text>
+    
+    <!-- Step 2 Link -->
+    <text x="140" y="17" font-family="-apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748B">Step 2: Review</text>
+
+    <!-- Quick QR Link -->
+    <text x="230" y="17" font-family="-apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748B">Quick QR</text>
+
+    <!-- FAQ Link -->
+    <text x="310" y="17" font-family="-apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748B">FAQ</text>
+  </g>
+
+  <!-- Step 1 Header -->
+  <g transform="translate(40, 80)">
+    <text x="0" y="14" font-family="monospace" font-size="11" font-weight="700" fill="#10B981" letter-spacing="1">STEP 1 OF 3 · LOCAL RECONCILIATION</text>
+    <text x="0" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#F8FAFC">Paste your payout list</text>
+    <text x="0" y="66" font-family="-apple-system, sans-serif" font-size="13" fill="#94A3B8">Pasted text is automatically cleaned, duplicate IDs merged, and totals reconciled locally. Nothing leaves your browser.</text>
+  </g>
+
+  <!-- MAIN TWO-COLUMN WORKSPACE (Left: Editor 570px, Right: Promises 320px) -->
+  <g transform="translate(40, 165)">
+    
+    <!-- LEFT COLUMN: Input Textarea Panel -->
+    <g transform="translate(0, 0)">
+      <!-- Panel Container -->
+      <rect width="570" height="315" rx="10" fill="#0A0F1A" stroke="#1E293B" stroke-width="1.5" filter="url(#cardShadow)" />
+      
+      <!-- Line Number Margin -->
+      <rect x="0" y="0" width="36" height="315" rx="10" fill="#070B13" />
+      <g transform="translate(20, 28)" font-family="monospace" font-size="11" fill="#475569" text-anchor="middle">
+        <text y="0">1</text>
+        <text y="24">2</text>
+        <text y="48">3</text>
+        <text y="72">4</text>
+        <text y="96">5</text>
+        <text y="120">6</text>
+        <text y="144">7</text>
+        <text y="168">8</text>
+      </g>
+
+      <!-- Code / Payout List Lines (Neatly contained, no clipping) -->
+      <g transform="translate(52, 28)" font-family="monospace" font-size="12" fill="#E2E8F0" xml:space="preserve">
+        <text y="0" fill="#64748B"># Paste messy list from WhatsApp, Slack, or email:</text>
+        <text y="24"><tspan fill="#38BDF8">rahul.verma42@okaxis</tspan> (Rahul Verma) <tspan fill="#34D399" font-weight="bold">₹4,250</tspan></text>
+        <text y="48"><tspan fill="#38BDF8">9999991811@ybl</tspan> - <tspan fill="#34D399" font-weight="bold">1,200/-</tspan></text>
+        <text y="72"><tspan fill="#38BDF8">anita.sharma@upi</tspan> <tspan fill="#34D399" font-weight="bold">500</tspan></text>
+        <text y="96"><tspan fill="#38BDF8">rahul.verma42@okaxis</tspan> <tspan fill="#94A3B8">[duplicate]</tspan> <tspan fill="#34D399" font-weight="bold">₹750</tspan></text>
+        <text y="120"><tspan fill="#38BDF8">vikram.singh@icici</tspan> (Vikram) <tspan fill="#34D399" font-weight="bold">Rs 12,500</tspan></text>
+        <text y="144"><tspan fill="#38BDF8">priya@paytm</tspan> <tspan fill="#34D399" font-weight="bold">450/-</tspan></text>
+        <text y="168" fill="#F59E0B" font-weight="bold">Total: 19,650</text>
+      </g>
+
+      <!-- Inner Divider -->
+      <line x1="0" y1="260" x2="570" y2="260" stroke="#1E293B" stroke-width="1" />
+
+      <!-- Bottom Action Bar inside Editor Panel -->
+      <g transform="translate(16, 272)">
+        <!-- Clean Up Button (Primary) -->
+        <rect x="0" y="0" width="130" height="30" rx="6" fill="#10B981" />
+        <text x="65" y="19" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#000000" text-anchor="middle">📋 Clean &amp; Review</text>
+
+        <!-- Load Sample Button -->
+        <rect x="140" y="0" width="115" height="30" rx="6" fill="#161F30" stroke="#334155" />
+        <text x="197" y="19" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0" text-anchor="middle">🧪 Load Sample</text>
+
+        <!-- Sheet Upload Button -->
+        <rect x="265" y="0" width="135" height="30" rx="6" fill="#161F30" stroke="#334155" />
+        <text x="332" y="19" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#E2E8F0" text-anchor="middle">📂 Excel / CSV Import</text>
+
+        <!-- Line Counter (Right-aligned inside panel) -->
+        <text x="535" y="19" font-family="monospace" font-size="11" fill="#64748B" text-anchor="end">7 rows · ₹19,650</text>
+      </g>
+    </g>
+
+    <!-- RIGHT COLUMN: Security & Architecture Promise Cards (Width 320px) -->
+    <g transform="translate(600, 0)">
+      
+      <!-- Promise Card 1: Totals Must Add Up -->
+      <g transform="translate(0, 0)">
+        <rect width="320" height="70" rx="8" fill="#111827" stroke="#1F2937" />
+        <!-- Icon -->
+        <circle cx="22" cy="22" r="10" fill="#10B981" fill-opacity="0.2" />
+        <text x="22" y="26" font-family="sans-serif" font-size="11" font-weight="bold" fill="#34D399" text-anchor="middle">∑</text>
+        <!-- Title -->
+        <text x="42" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Totals Must Add Up</text>
+        <!-- Multiline Body (Fits comfortably inside 320px) -->
+        <text x="42" y="42" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">Pasted source lines are balanced against payout sum.</text>
+        <text x="42" y="56" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">Any discrepancy stops you before paying.</text>
+      </g>
+
+      <!-- Promise Card 2: Duplicates Merged -->
+      <g transform="translate(0, 81)">
+        <rect width="320" height="70" rx="8" fill="#111827" stroke="#1F2937" />
+        <circle cx="22" cy="22" r="10" fill="#10B981" fill-opacity="0.2" />
+        <text x="22" y="26" font-family="sans-serif" font-size="10" font-weight="bold" fill="#34D399" text-anchor="middle">⑂</text>
+        <text x="42" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Duplicates Merged</text>
+        <text x="42" y="42" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">Same UPI ID merges into 1 single payment:</text>
+        <text x="42" y="56" font-family="-apple-system, sans-serif" font-size="10.5" fill="#34D399">₹4,250 + ₹750 = ₹5,000 <tspan fill="#94A3B8">(history kept).</tspan></text>
+      </g>
+
+      <!-- Promise Card 3: No Guessing Handles -->
+      <g transform="translate(0, 162)">
+        <rect width="320" height="70" rx="8" fill="#111827" stroke="#1F2937" />
+        <circle cx="22" cy="22" r="10" fill="#10B981" fill-opacity="0.2" />
+        <text x="22" y="26" font-family="sans-serif" font-size="10" font-weight="bold" fill="#34D399" text-anchor="middle">✓</text>
+        <text x="42" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">No Guessing Handles</text>
+        <text x="42" y="42" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">Plain 10-digit mobile numbers never receive</text>
+        <text x="42" y="56" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">guessed @bank handles or unverified QR codes.</text>
+      </g>
+
+      <!-- Promise Card 4: Private by Architecture -->
+      <g transform="translate(0, 243)">
+        <rect width="320" height="70" rx="8" fill="#111827" stroke="#1F2937" />
+        <circle cx="22" cy="22" r="10" fill="#10B981" fill-opacity="0.2" />
+        <text x="22" y="25" font-family="sans-serif" font-size="10" font-weight="bold" fill="#34D399" text-anchor="middle">🔒</text>
+        <text x="42" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Private by Default</text>
+        <text x="42" y="42" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">100% client-side in-browser sandbox.</text>
+        <text x="42" y="56" font-family="-apple-system, sans-serif" font-size="10.5" fill="#94A3B8">Zero server transmission, zero cookies, zero database.</text>
+      </g>
+    </g>
+  </g>
+</svg>
