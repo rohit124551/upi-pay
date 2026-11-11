@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Version-v2.0-blue?style=flat-square" alt="Version 2.0" />
   <a href="https://rohitkumarranjan.in"><img src="https://img.shields.io/badge/Author-Rohit%20Kumar%20Ranjan-orange?style=flat-square&logo=google-chrome" alt="Author Rohit Kumar Ranjan" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-emerald?style=flat-square" alt="MIT License" /></a>
   <img src="https://img.shields.io/badge/Architecture-100%25%20Client--Side-blue?style=flat-square" alt="100% Client-Side" />

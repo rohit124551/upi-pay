@@ -18,9 +18,10 @@ export const Header = ({ stage, mode, onMode, onSettings, onClear, hasBatch, onI
             <UpiPayLogo size={20} />
           </div>
           <div>
-            <p className="whitespace-nowrap font-semibold leading-none tracking-tight text-sm sm:text-base">
+            <p className="whitespace-nowrap font-semibold leading-none tracking-tight text-sm sm:text-base flex items-center">
               <span className="bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-transparent font-extrabold">UPI</span>
               <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 bg-clip-text text-transparent font-extrabold ml-1">Pay</span>
+              <span className="text-[10px] font-mono font-medium text-muted-foreground ml-1.5 px-1.5 py-0.2 rounded bg-slate-100 dark:bg-white/[0.06] border border-border/60">v2.0</span>
             </p>
             <p className="mt-1 hidden font-mono text-[11px] text-muted-foreground sm:block">
               bulk UPI & batch pay - zero backend
