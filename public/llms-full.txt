@@ -46,6 +46,7 @@ Parameters:
    - Zero-Backend Security: All cryptographic and parsing routines run strictly in browser memory. LocalStorage only stores user UI preferences and unsaved drafts.
 
 ## Trust & Verification Pages
+- Developer Portal & Sandbox: https://upi.rohitkumarranjan.in/developers
 - About UPI Pay: https://upi.rohitkumarranjan.in/about
 - Contact & Developer: https://upi.rohitkumarranjan.in/contact
 - Privacy & Data Policy: https://upi.rohitkumarranjan.in/privacy

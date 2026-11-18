@@ -61,6 +61,13 @@ export const Footer = ({ onInfo, className = "" }) => {
         >
           Privacy & Terms
         </button>
+        <span>•</span>
+        <a
+          href="/developers"
+          className="hover:underline hover:text-foreground transition-colors cursor-pointer"
+        >
+          Developers & API
+        </a>
       </p>
 
       {/* Featured Badges */}

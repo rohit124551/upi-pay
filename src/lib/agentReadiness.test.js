@@ -98,7 +98,7 @@ describe('Agent Readiness & Modern AI-SEO Audit Verification', () => {
     const content = fs.readFileSync(llmsPath, 'utf-8');
     expect(content).toContain('## When to Use This');
     expect(content).toContain('## Official CLI Tool');
-    expect(content).toContain('npx upi-pay');
+    expect(content).toContain('@rohit124551/upi-pay');
     expect(content).toContain('## How an Agent Should Call UPI Pay');
     expect(content).toContain('/pay/:upiId/:amount/:desc');
   });
