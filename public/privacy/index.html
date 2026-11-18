@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy & Security — UPI Pay</title>
+    <meta name="description" content="Read the zero-server privacy guarantee and data protection policy of UPI Pay. No databases, no telemetry, and 100% in-browser client execution." />
+    <link rel="canonical" href="https://upi.rohitkumarranjan.in/privacy" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Privacy Policy & Security — UPI Pay" />
+    <meta property="og:description" content="100% client-side privacy: no servers, zero telemetry, no databases. Maintained by Rohit Kumar Ranjan." />
+    <meta property="og:image" content="https://upi.rohitkumarranjan.in/product-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root { --bg: #09090b; --text: #f4f4f5; --muted: #a1a1aa; --accent: #10b981; --border: #27272a; --card: #18181b; }
+      @media (prefers-color-scheme: light) {
+        :root { --bg: #ffffff; --text: #09090b; --muted: #71717a; --accent: #059669; --border: #e4e4e7; --card: #f4f4f5; }
+      }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; }
+      .container { max-width: 760px; margin: 0 auto; }
+      header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+      h1 { font-size: 2rem; margin: 0 0 0.5rem 0; color: var(--text); }
+      h2 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+      p { margin-bottom: 1rem; color: var(--text); }
+      .lead { font-size: 1.15rem; color: var(--muted); }
+      ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+      li { margin-bottom: 0.5rem; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .btn { display: inline-block; background: var(--accent); color: #fff !important; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; margin-top: 1rem; }
+      .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; }
+      footer { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p><a href="/">&larr; Return to UPI Pay Terminal</a></p>
+        <h1>Privacy Policy & Data Security</h1>
+        <p class="lead">Last Updated: November 2026. Complete transparency on how UPI Pay handles your data: zero remote servers, zero databases, and zero tracking.</p>
+        <a href="/" class="btn">Launch UPI Pay Terminal</a>
+      </header>
+
+      <main>
+        <h2>Zero Backend Data Collection</h2>
+        <p>UPI Pay is intentionally designed as an offline-first, client-side application. When you use UPI Pay to paste messy lists, process bulk payouts, reconcile amounts, or generate dynamic QR codes:</p>
+        <ul>
+          <li><strong>No Server Transmission</strong>: Beneficiary names, UPI Virtual Payment Addresses (VPAs), payment amounts, transaction remarks, and contact numbers never leave your browser.</li>
+          <li><strong>No Backend Databases</strong>: There is no central server, backend API, or cloud database connected to UPI Pay that could store, view, or leak your financial details.</li>
+          <li><strong>No Telemetry or Analytics</strong>: We do not use Google Analytics, Facebook Pixels, Hotjar, or any commercial user tracking scripts.</li>
+        </ul>
+
+        <h2>Local Storage & Session Persistence</h2>
+        <p>UPI Pay uses your browser's standard <code>localStorage</code> API purely for convenience features, such as remembering your UI preferences (dark/light theme) and maintaining your current payout batch draft in case you refresh the page. This data remains strictly on your local device and is never synchronized to any remote cloud service. You can clear this data at any time by clicking "Clear Batch" or clearing your browser cache.</p>
+
+        <h2>NPCI Protocol & Bank Interoperability</h2>
+        <p>UPI Pay generates standardized NPCI UPI URLs following the official specification: <code>upi://pay?pa=...&am=...&tn=...</code>. When you scan a QR code using Google Pay, PhonePe, Paytm, BHIM, or your mobile banking app, the transaction is executed directly between your banking app and the recipient's bank over NPCI's secure interbank network. UPI Pay never acts as an intermediary or financial custodian.</p>
+
+        <h2>Data Security Best Practices</h2>
+        <p>Because all logic runs in your browser, your security depends on using an up-to-date, secure web browser. Always ensure you are accessing the verified official domain:</p>
+        <div class="card">
+          <p><strong>Official Domain</strong>: <a href="https://upi.rohitkumarranjan.in">https://upi.rohitkumarranjan.in</a></p>
+          <p><strong>Auditable Source Code</strong>: <a href="https://github.com/rohit124551/upi-pay" target="_blank" rel="noopener noreferrer">github.com/rohit124551/upi-pay</a></p>
+          <p><strong>Maintainer Contact</strong>: <a href="mailto:contact@rohitkumarranjan.in">contact@rohitkumarranjan.in</a></p>
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 UPI Pay &bull; Built by <a href="https://rohitkumarranjan.in">Rohit Kumar Ranjan</a> &bull; <a href="/about">About</a> &bull; <a href="/contact">Contact</a> &bull; <a href="/sitemap.xml">Sitemap</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,11 +1,40 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "build",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Vary",
+          "value": "Accept"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "destination": "/api/entry?path=$1"
+    },
+    {
+      "source": "/pay/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/quickqr",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/quick",
       "destination": "/index.html"
     }
   ]
 }
-

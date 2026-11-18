@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/</loc>
+    <loc>https://upi.rohitkumarranjan.in/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>/quickqr</loc>
+    <loc>https://upi.rohitkumarranjan.in/quickqr</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://upi.rohitkumarranjan.in/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://upi.rohitkumarranjan.in/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://upi.rohitkumarranjan.in/privacy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://upi.rohitkumarranjan.in/llms.txt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

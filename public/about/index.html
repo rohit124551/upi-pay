@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About UPI Pay — Bulk UPI Payouts & Dynamic QR Suite</title>
+    <meta name="description" content="Learn about UPI Pay, an open-source client-side payment suite designed for retail bank accounts to execute bulk UPI payouts with zero gateway fees. Developed by Rohit Kumar Ranjan." />
+    <link rel="canonical" href="https://upi.rohitkumarranjan.in/about" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="About UPI Pay — Bulk UPI Payouts & Dynamic QR Suite" />
+    <meta property="og:description" content="Zero backend, zero gateway fees bulk UPI payment terminal built by Rohit Kumar Ranjan." />
+    <meta property="og:image" content="https://upi.rohitkumarranjan.in/product-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root { --bg: #09090b; --text: #f4f4f5; --muted: #a1a1aa; --accent: #10b981; --border: #27272a; --card: #18181b; }
+      @media (prefers-color-scheme: light) {
+        :root { --bg: #ffffff; --text: #09090b; --muted: #71717a; --accent: #059669; --border: #e4e4e7; --card: #f4f4f5; }
+      }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; }
+      .container { max-width: 760px; margin: 0 auto; }
+      header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+      h1 { font-size: 2rem; margin: 0 0 0.5rem 0; color: var(--text); }
+      h2 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+      p { margin-bottom: 1rem; color: var(--text); }
+      .lead { font-size: 1.15rem; color: var(--muted); }
+      ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+      li { margin-bottom: 0.5rem; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .btn { display: inline-block; background: var(--accent); color: #fff !important; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; margin-top: 1rem; }
+      .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; }
+      footer { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p><a href="/">&larr; Return to UPI Pay Terminal</a></p>
+        <h1>About UPI Pay</h1>
+        <p class="lead">A free, client-side financial utility for executing bulk UPI payouts and generating dynamic NPCI QR codes using standard everyday Indian bank accounts.</p>
+        <a href="/" class="btn">Launch UPI Pay Terminal</a>
+      </header>
+
+      <main>
+        <h2>The Problem We Solve</h2>
+        <p>In India, businesses and individuals frequently need to send payouts to multiple people: paying event volunteers, distributing freelance stipends, refunding customers, or paying tournament prizes. However, traditional payment gateways like RazorpayX or Cashfree require formal corporate registration, weeks of KYC verification, and charge recurring fees or commissions per transfer. Most small organizations and gig creators only have regular retail savings or current bank accounts.</p>
+        <p>UPI Pay bridges this gap. It enables anyone with a regular bank account to execute bulk UPI payouts directly using consumer payment apps (Google Pay, PhonePe, Paytm, BHIM) without paying a single rupee in gateway fees or setting up server APIs.</p>
+
+        <h2>Core Engineering Principles</h2>
+        <ul>
+          <li><strong>100% Client-Side Architecture</strong>: All data processing, regex extraction, checksum validation, and dynamic NPCI QR code generation take place entirely inside your web browser. Zero beneficiary details or financial values are ever transmitted to any remote server.</li>
+          <li><strong>Smart 4-Way Payout Reconciliation</strong>: You can paste messy beneficiary lists copied directly from WhatsApp, Excel, Google Sheets, or email. UPI Pay extracts the valid UPI IDs, sums the total payout, compares it against your expected invoice amount, flags duplicate accounts, and allows row-by-row confirmation to eliminate overpaying.</li>
+          <li><strong>NPCI Standard Dynamic QR Codes</strong>: Generates standard-compliant UPI payment intent codes that any Indian UPI app can scan and pay instantly with the exact amount and reference note pre-filled.</li>
+          <li><strong>Zero Backend Infrastructure</strong>: No database, no user accounts, no tracking cookies, and no backend servers.</li>
+        </ul>
+
+        <h2>Creator and Open Source Stewardship</h2>
+        <p>UPI Pay is designed, developed, and maintained by <strong>Rohit Kumar Ranjan</strong>, a software developer and open-source creator based in India. The project is distributed under the permissive MIT Open Source License, providing complete transparency and enabling community auditing of all financial algorithms.</p>
+        <div class="card">
+          <p><strong>Developer Profile</strong>: <a href="https://rohitkumarranjan.in" target="_blank" rel="noopener noreferrer">Rohit Kumar Ranjan</a></p>
+          <p><strong>GitHub Repository</strong>: <a href="https://github.com/rohit124551/upi-pay" target="_blank" rel="noopener noreferrer">github.com/rohit124551/upi-pay</a></p>
+          <p><strong>Machine-Readable Agent Instructions</strong>: <a href="/llms.txt">llms.txt</a></p>
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 UPI Pay &bull; Built by <a href="https://rohitkumarranjan.in">Rohit Kumar Ranjan</a> &bull; <a href="/contact">Contact</a> &bull; <a href="/privacy">Privacy Policy</a> &bull; <a href="/sitemap.xml">Sitemap</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

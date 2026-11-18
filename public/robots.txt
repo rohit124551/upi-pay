@@ -1,26 +1,54 @@
-# robots.txt for UPI Pay
-# Allow general app indexing, but strictly disallow crawling of private payment links
+# robots.txt for UPI Pay (https://upi.rohitkumarranjan.in/)
+# Allow search engines and AI agents to crawl public app pages and machine-readable agent files
+# Disallow private user-generated payment links to protect sensitive beneficiary query strings
 
 User-agent: *
 Allow: /$
+Allow: /about
+Allow: /contact
+Allow: /privacy
 Allow: /quickqr
+Allow: /quick
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /sitemap.xml
 Disallow: /pay/
 Disallow: /#/pay/
 
 User-agent: Googlebot
 Allow: /$
+Allow: /about
+Allow: /contact
+Allow: /privacy
 Allow: /quickqr
+Allow: /quick
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /pay/
 Disallow: /#/pay/
 
 User-agent: Bingbot
 Allow: /$
+Allow: /about
+Allow: /contact
+Allow: /privacy
 Allow: /quickqr
+Allow: /quick
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /pay/
 Disallow: /#/pay/
 
 User-agent: Applebot
 Allow: /$
+Allow: /about
+Allow: /contact
+Allow: /privacy
 Allow: /quickqr
+Allow: /quick
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /pay/
 Disallow: /#/pay/
+
+Sitemap: https://upi.rohitkumarranjan.in/sitemap.xml
