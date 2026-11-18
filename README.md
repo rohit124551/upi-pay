@@ -194,16 +194,16 @@ UPI Pay includes an official command-line interface for terminal users, script d
 
 ```bash
 # Run on-demand without installing
-npx upi-pay qr --upi merchant@okaxis --amount 499.00 --desc "Invoice 1042"
+npx @rohit124551/upi-pay qr --upi merchant@okaxis --amount 499.00 --desc "Invoice 1042"
 
 # Parse raw messy beneficiary lists copied from WhatsApp or text
-npx upi-pay parse --file ./payouts.txt
+npx @rohit124551/upi-pay parse --file ./payouts.txt
 
 # Run 4-way reconciliation check against a master total
-npx upi-pay reconcile --file ./payouts.csv --total 50000.00
+npx @rohit124551/upi-pay reconcile --file ./payouts.csv --total 50000.00
 
 # Or install globally via npm
-npm install -g upi-pay-cli
+npm install -g @rohit124551/upi-pay
 ```
 
 ---

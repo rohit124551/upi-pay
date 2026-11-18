@@ -138,20 +138,20 @@
 
           <h3>Installation</h3>
           <pre><code># Run directly with npx (no install needed)
-npx upi-pay --help
+npx @rohit124551/upi-pay --help
 
 # Or install globally via npm
-npm install -g upi-pay-cli</code></pre>
+npm install -g @rohit124551/upi-pay</code></pre>
 
           <h3>CLI Commands</h3>
           <pre><code># 1. Generate dynamic NPCI QR and UPI intent URI
-npx upi-pay qr --upi merchant@okaxis --amount 499.00 --desc "Invoice 1042"
+npx @rohit124551/upi-pay qr --upi merchant@okaxis --amount 499.00 --desc "Invoice 1042"
 
 # 2. Parse unstructured text or WhatsApp messages into payout rows
-npx upi-pay parse --file ./beneficiaries.txt
+npx @rohit124551/upi-pay parse --file ./beneficiaries.txt
 
 # 3. Perform 4-way batch reconciliation against a master total
-npx upi-pay reconcile --file ./payouts.csv --total 50000.00</code></pre>
+npx @rohit124551/upi-pay reconcile --file ./payouts.csv --total 50000.00</code></pre>
         </section>
 
         <section id="api-reference">

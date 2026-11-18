@@ -1,5 +1,5 @@
 {
-  "name": "upi-pay",
+  "name": "@rohit124551/upi-pay",
   "version": "2.0.0",
   "description": "Bulk UPI payouts, batch pay, and dynamic QR generator - 100% client-side in your browser",
   "bin": {
