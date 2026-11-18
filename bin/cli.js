@@ -15,7 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const qrcodegen = require('./qrcodegen');
 
-const VERSION = '2.0.1';
+const VERSION = '2.0.2';
 
 // Regex for valid NPCI Virtual Payment Address (VPA)
 const VPA_REGEX = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
