@@ -6,7 +6,26 @@
     "upi-pay": "./bin/cli.js",
     "upi-pay-cli": "./bin/cli.js"
   },
-  "private": true,
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "upi",
+    "bulk-upi",
+    "npci",
+    "payouts",
+    "batch-pay",
+    "qr-code",
+    "fintech"
+  ],
+  "author": "Rohit Kumar Ranjan <contact@rohitkumarranjan.in> (https://rohitkumarranjan.in)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rohit124551/upi-pay.git"
+  },
   "dependencies": {
     "@hookform/resolvers": "5.0.1",
     "@radix-ui/react-accordion": "1.2.8",
