@@ -188,15 +188,42 @@ npm test -- --watchAll=false
 
 ---
 
-## 🌐 Cloud Deployment (Vercel)
+## 🛠️ Official CLI Tool (`upi-pay`)
 
-UPI Pay is pre-configured for instant zero-configuration deployment on **Vercel** with full Single-Page Application (SPA) rewrite routing:
+UPI Pay includes an official command-line interface for terminal users, script developers, and autonomous AI agents:
 
-1. Import your GitHub repository into [Vercel](https://vercel.com).
-2. **Framework Preset**: Create React App.
-3. **Build Command**: `npm run build` (handled automatically via [`vercel.json`](vercel.json)).
-4. **Output Directory**: `build`.
-5. Deploy! All dynamic routes (`/quickqr`, `/pay/`) work seamlessly without 404 errors on page refresh.
+```bash
+# Run on-demand without installing
+npx upi-pay qr --upi merchant@okaxis --amount 499.00 --desc "Invoice 1042"
+
+# Parse raw messy beneficiary lists copied from WhatsApp or text
+npx upi-pay parse --file ./payouts.txt
+
+# Run 4-way reconciliation check against a master total
+npx upi-pay reconcile --file ./payouts.csv --total 50000.00
+
+# Or install globally via npm
+npm install -g upi-pay-cli
+```
+
+---
+
+## 💻 Developer Portal & Interactive QR Sandbox
+
+Visit the official Developer Portal at [`https://upi.rohitkumarranjan.in/developers`](https://upi.rohitkumarranjan.in/developers):
+* **Interactive Dynamic QR Sandbox:** Test live payee UPI IDs, amounts, and notes with real-time SVG QR rendering.
+* **API Key & Client Generator:** Generate local browser development keys for debugging and agent tracking.
+* **Direct Payment URLs:** Pre-fill amounts and notes via `https://upi.rohitkumarranjan.in/pay/:upiId/:amount/:desc`.
+* **Multi-Language Snippets:** Copy-paste ready code examples in JavaScript (Node.js/Fetch), Python, and cURL.
+
+---
+
+## 🤖 Agent Readiness & Machine-Readable Spec
+
+UPI Pay is built from the ground up to be agent-friendly:
+* **Agent Instructions:** [`/llms.txt`](https://upi.rohitkumarranjan.in/llms.txt) and [`/llms-full.txt`](https://upi.rohitkumarranjan.in/llms-full.txt) following the `llms.txt` specification.
+* **Markdown Content Negotiation:** Supports `Accept: text/markdown` ([acceptmarkdown.com](https://acceptmarkdown.com) / RFC 9110) on all routes.
+* **Agent-Friendly 404s:** Returns real HTTP 404 status codes and Markdown error bodies pointing AI crawlers to available docs and endpoints.
 
 ---
 
@@ -208,23 +235,28 @@ UPI Pay is pre-configured for instant zero-configuration deployment on **Vercel*
 2. **Framework Preset**: Create React App.
 3. **Build Command**: `npm run build` (handled automatically via [`vercel.json`](vercel.json)).
 4. **Output Directory**: `build`.
-5. Deploy! All dynamic routes (`/quickqr`, `/pay/`) work seamlessly without 404 errors on page refresh.
+5. Deploy! All dynamic routes (`/quickqr`, `/pay/`, `/developers`, `/about`, `/privacy`) work seamlessly.
 
 ---
 
 ## 📂 Project Structure
 
 ```
-├── public/                 # Icons, robots.txt, sitemap.xml, favicon
+├── bin/                    # Official CLI executable (bin/cli.js)
+├── public/                 # Static assets, robots.txt, sitemap.xml, llms.txt
+│   ├── developers/         # Developer portal & interactive sandbox (index.html)
+│   ├── about/              # Static trust anchor page (index.html)
+│   ├── contact/            # Developer contact & support (index.html)
+│   └── privacy/            # Zero-server privacy guarantee (index.html)
+├── api/                    # Vercel serverless function (entry.js) for markdown content negotiation
 ├── src/                    # React components, hooks, library logic
 │   ├── components/         # PastePanel, ReviewStage, PayStage, Runner, QuickQr, PayPage
 │   ├── hooks/              # useBatch.js, useTheme.js, useLocalState.js
 │   └── lib/                # parser.js, money.js, lite.js, upi.js, csv.js
 ├── docs/                   # Vector SVG screenshots, architecture diagrams, banners
 ├── standalone.html         # Complete single-file offline zero-install distribution
-├── vercel.json             # Vercel SPA routing & build configuration
-├── vercel.json             # Vercel SPA routing & build configuration
-├── package.json            # Single root package configuration
+├── vercel.json             # Vercel routing, markdown negotiation & build configuration
+├── package.json            # Single root package configuration with CLI bin mapping
 ├── .gitignore              # Single consolidated root gitignore
 ├── README.md               # Master GitHub documentation
 └── LICENSE                 # MIT License
