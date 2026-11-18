@@ -14,7 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const VERSION = '2.0.0';
+const VERSION = '2.0.1';
 
 // Regex for valid NPCI Virtual Payment Address (VPA)
 const VPA_REGEX = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
@@ -26,7 +26,7 @@ https://upi.rohitkumarranjan.in/
 
 Usage:
   upi-pay <command> [options]
-  npx upi-pay <command> [options]
+  npx @rohit124551/upi-pay <command> [options]
 
 Commands:
   qr          Generate a dynamic NPCI UPI payment URI and ASCII QR code
@@ -50,9 +50,9 @@ Options for 'reconcile':
   --total <amount>    Expected master batch total in INR
 
 Examples:
-  npx upi-pay qr --upi merchant@okaxis --amount 499 --desc "Invoice 1042"
-  npx upi-pay parse --file ./payouts.txt
-  npx upi-pay reconcile --file ./payouts.csv --total 50000
+  npx @rohit124551/upi-pay qr --upi merchant@okaxis --amount 499 --desc "Invoice 1042"
+  npx @rohit124551/upi-pay parse --file ./payouts.txt
+  npx @rohit124551/upi-pay reconcile --file ./payouts.csv --total 50000
 `);
 }
 
