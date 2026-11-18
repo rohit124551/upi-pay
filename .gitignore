@@ -13,6 +13,7 @@ build/
 frontend/build/
 dist/
 frontend/dist/
+*.zip
 
 # Environment & Local Secrets
 .env
@@ -26,6 +27,7 @@ frontend/.env.local
 # Local Developer & AI Agent Context (Kept locally on machine, never pushed to GitHub)
 PROJECT_CONTEXT.md
 REVIEW.md
+ROADMAP.md
 memory/
 backend/
 scratch/

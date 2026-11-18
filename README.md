@@ -20,7 +20,10 @@
   </a>
   &nbsp;&nbsp;
   <a href="https://launchbuff.com/products/upi-pay-o8n61m" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
-    <img src="https://launchbuff.com/badge-featured-dark.svg" alt="Featured on LaunchBuff" width="154" height="48" />
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://launchbuff.com/badge-featured-dark.svg">
+      <img src="https://launchbuff.com/badge-featured-light.svg" alt="Featured on LaunchBuff" width="154" height="48" />
+    </picture>
   </a>
 </p>
 

@@ -85,10 +85,18 @@ export const Footer = ({ onInfo, className = "" }) => {
           title="Featured on LaunchBuff"
           className="inline-block transition-transform hover:scale-105"
         >
+          {/* Dark theme badge */}
           <img
             src="https://launchbuff.com/badge-featured-dark.svg"
             alt="Featured on LaunchBuff"
-            className="h-7 w-auto rounded"
+            className="h-7 w-auto rounded hidden dark:inline-block"
+            loading="lazy"
+          />
+          {/* Light theme badge */}
+          <img
+            src="https://launchbuff.com/badge-featured-light.svg"
+            alt="Featured on LaunchBuff"
+            className="h-7 w-auto rounded inline-block dark:hidden"
             loading="lazy"
           />
         </a>
