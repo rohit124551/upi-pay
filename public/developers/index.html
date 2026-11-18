@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Developer Portal & API Sandbox — UPI Pay</title>
+    <meta name="description" content="Official UPI Pay Developer Portal: API keys, quickstart guides, URL parameter references, official CLI tool, and interactive dynamic NPCI QR sandbox environment." />
+    <link rel="canonical" href="https://upi.rohitkumarranjan.in/developers" />
+    <meta name="google-site-verification" content="DHUbx42rOb9Tb8fUKyMNdZlt_O7fK6SAhkGxnBQkBQc" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Developer Portal & API Sandbox — UPI Pay" />
+    <meta property="og:description" content="API documentation, official CLI tool, and interactive NPCI UPI QR sandbox for developers and AI agents." />
+    <meta property="og:image" content="https://upi.rohitkumarranjan.in/product-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        --bg: #09090b; --text: #f4f4f5; --muted: #a1a1aa; --accent: #10b981;
+        --border: #27272a; --card: #18181b; --code-bg: #121215; --input-bg: #27272a;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #ffffff; --text: #09090b; --muted: #71717a; --accent: #059669;
+          --border: #e4e4e7; --card: #f4f4f5; --code-bg: #eaeaea; --input-bg: #ffffff;
+        }
+      }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; }
+      .container { max-width: 820px; margin: 0 auto; }
+      header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+      h1 { font-size: 2.2rem; margin: 0 0 0.5rem 0; color: var(--text); }
+      h2 { font-size: 1.4rem; margin-top: 2.25rem; margin-bottom: 0.75rem; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+      h3 { font-size: 1.15rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text); }
+      p { margin-bottom: 1rem; }
+      .lead { font-size: 1.15rem; color: var(--muted); }
+      ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+      li { margin-bottom: 0.5rem; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .btn { display: inline-block; background: var(--accent); color: #fff !important; padding: 0.6rem 1.25rem; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; }
+      .btn:hover { opacity: 0.9; text-decoration: none; }
+      .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0; }
+      pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", monospace; font-size: 0.9rem; margin-bottom: 1rem; }
+      code { font-family: "JetBrains Mono", monospace; background: var(--code-bg); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.88rem; }
+      .sandbox-form { display: grid; gap: 1rem; margin-top: 1rem; }
+      .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+      .form-group label { font-weight: 500; font-size: 0.9rem; }
+      .form-group input { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.8rem; border-radius: 6px; font-family: inherit; font-size: 0.95rem; }
+      .sandbox-result { margin-top: 1.25rem; padding: 1rem; background: var(--code-bg); border-radius: 6px; border: 1px dashed var(--accent); word-break: break-all; }
+      .sandbox-preview { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; background: #ffffff; border-radius: 8px; margin-top: 1rem; width: fit-content; min-width: 220px; }
+      table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+      th, td { border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left; font-size: 0.9rem; }
+      th { background: var(--card); font-weight: 600; }
+      footer { margin-top: 3.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p><a href="/">&larr; Return to UPI Pay Terminal</a></p>
+        <h1>UPI Pay Developer Portal</h1>
+        <p class="lead">Build, script, and test programmatic UPI payments and dynamic QR flows with zero gateway fees and complete client privacy.</p>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem;">
+          <a href="#sandbox" class="btn">Open Interactive Sandbox</a>
+          <a href="#quickstart" class="btn" style="background: transparent; color: var(--text) !important; border: 1px solid var(--border);">Quickstart Guide</a>
+          <a href="#cli" class="btn" style="background: transparent; color: var(--text) !important; border: 1px solid var(--border);">Official CLI Tool</a>
+        </div>
+      </header>
+
+      <main>
+        <section id="quickstart">
+          <h2>Quickstart Guide</h2>
+          <p>UPI Pay enables developers and AI agents to trigger dynamic UPI payments instantly without creating corporate merchant accounts or paying transaction commissions. You can initiate payments via direct deep links, client-side embeddings, or our command-line tool.</p>
+
+          <h3>1. Instant URL Integration</h3>
+          <p>Construct a URL following the standard schema to automatically render a payment terminal pre-filled with your recipient, amount, and reference invoice:</p>
+          <pre><code>https://upi.rohitkumarranjan.in/pay/{upiId}/{amount}/{description}</code></pre>
+          <p>Example: <code>https://upi.rohitkumarranjan.in/pay/merchant@okaxis/499.00/Invoice-1042</code></p>
+
+          <h3>2. Standard NPCI URI Construction</h3>
+          <p>To trigger local payment apps directly on Android or iOS devices, construct standard NPCI UPI URIs:</p>
+          <pre><code>upi://pay?pa=merchant@okaxis&pn=MerchantName&am=499.00&cu=INR&tn=Invoice1042</code></pre>
+        </section>
+
+        <section id="api-keys">
+          <h2>API Keys & Client Authentication</h2>
+          <p>Because UPI Pay operates with a <strong>100% client-side zero-server architecture</strong>, standard payouts do not require secret backend API keys or monthly API fees. All cryptographic validations and dynamic QR calculations occur in the user's browser or terminal.</p>
+          <div class="card">
+            <h3>Generate Local Client API Key</h3>
+            <p>For tracking local integrations, automated agent workflows, and developer session debugging, you can generate a persistent client API key below:</p>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.5rem;">
+              <input type="text" id="apiKeyField" readonly value="Click Generate to create a developer key" style="flex: 1; padding: 0.6rem; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: monospace;" />
+              <button class="btn" onclick="generateApiKey()">Generate Key</button>
+            </div>
+            <p id="keyStatus" style="font-size: 0.85rem; color: var(--accent); margin-top: 0.5rem;"></p>
+          </div>
+        </section>
+
+        <section id="sandbox">
+          <h2>Interactive Dynamic QR Sandbox Environment</h2>
+          <p>Use this sandbox environment to simulate dynamic NPCI UPI payment requests in real time. Modify the parameters to view the generated UPI URI, dynamic QR code preview, and copyable implementation snippets.</p>
+
+          <div class="card">
+            <div class="sandbox-form">
+              <div class="form-group">
+                <label for="sbUpi">Payee UPI ID (VPA)*</label>
+                <input type="text" id="sbUpi" value="merchant@okaxis" placeholder="name@bank" oninput="updateSandbox()" />
+              </div>
+              <div class="form-group">
+                <label for="sbAmount">Amount in INR (₹)</label>
+                <input type="number" id="sbAmount" value="499.00" step="0.01" placeholder="499.00" oninput="updateSandbox()" />
+              </div>
+              <div class="form-group">
+                <label for="sbNote">Transaction Note / Invoice</label>
+                <input type="text" id="sbNote" value="Order #1042" placeholder="Reference Note" oninput="updateSandbox()" />
+              </div>
+            </div>
+
+            <div class="sandbox-result">
+              <strong>Generated NPCI UPI URI:</strong><br />
+              <code id="sbUriResult">upi://pay?pa=merchant%40okaxis&am=499.00&cu=INR&tn=Order%20%231042</code>
+              <br /><br />
+              <strong>Deep Link URL:</strong><br />
+              <a id="sbWebResult" href="https://upi.rohitkumarranjan.in/pay/merchant@okaxis/499.00/Order%20%231042" target="_blank">https://upi.rohitkumarranjan.in/pay/merchant@okaxis/499.00/Order%20%231042</a>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <strong>Live QR Preview:</strong>
+              <div class="sandbox-preview">
+                <img id="sbQrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi%3A%2F%2Fpay%3Fpa%3Dmerchant%40okaxis%26am%3D499.00%26cu%3DINR%26tn%3DOrder%2520%25231042" alt="Dynamic NPCI QR Preview" width="180" height="180" />
+                <span style="color: #111; font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600;">Scan with GPay / PhonePe / Paytm</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="cli">
+          <h2>Official CLI Tool</h2>
+          <p>The official UPI Pay CLI allows developers and automated AI agents to generate QR codes, parse messy beneficiary lists, and reconcile batches directly from the terminal.</p>
+
+          <h3>Installation</h3>
+          <pre><code># Run directly with npx (no install needed)
+npx upi-pay --help
+
+# Or install globally via npm
+npm install -g upi-pay-cli</code></pre>
+
+          <h3>CLI Commands</h3>
+          <pre><code># 1. Generate dynamic NPCI QR and UPI intent URI
+npx upi-pay qr --upi merchant@okaxis --amount 499.00 --desc "Invoice 1042"
+
+# 2. Parse unstructured text or WhatsApp messages into payout rows
+npx upi-pay parse --file ./beneficiaries.txt
+
+# 3. Perform 4-way batch reconciliation against a master total
+npx upi-pay reconcile --file ./payouts.csv --total 50000.00</code></pre>
+        </section>
+
+        <section id="api-reference">
+          <h2>API & URL Scheme Reference</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Requirement</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>upiId</code></td>
+                <td>String</td>
+                <td>Required</td>
+                <td>Valid NPCI Virtual Payment Address (e.g. <code>user@okhdfcbank</code>, <code>vendor@paytm</code>).</td>
+              </tr>
+              <tr>
+                <td><code>amount</code></td>
+                <td>Decimal</td>
+                <td>Optional</td>
+                <td>Amount in INR with up to 2 decimal places (e.g. <code>499.00</code>).</td>
+              </tr>
+              <tr>
+                <td><code>desc</code></td>
+                <td>String</td>
+                <td>Optional</td>
+                <td>URL-encoded transaction note or invoice reference.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Code Implementation Examples</h3>
+          <p><strong>JavaScript / Node.js:</strong></p>
+          <pre><code>function createUpiPayment(upiId, amount, note) {
+  const base = "https://upi.rohitkumarranjan.in/pay";
+  return `${base}/${encodeURIComponent(upiId)}/${encodeURIComponent(amount)}/${encodeURIComponent(note)}`;
+}
+
+// Example usage
+const link = createUpiPayment("merchant@okaxis", 499, "Invoice #1042");
+console.log("Payment Link:", link);</code></pre>
+
+          <p><strong>Python:</strong></p>
+          <pre><code>import urllib.parse
+
+def create_upi_link(upi_id: str, amount: float = None, note: str = None) -> str:
+    parts = ["https://upi.rohitkumarranjan.in/pay", urllib.parse.quote(upi_id)]
+    if amount is not None:
+        parts.append(f"{amount:.2f}")
+    if note:
+        parts.append(urllib.parse.quote(note))
+    return "/".join(parts)
+
+print(create_upi_link("merchant@okaxis", 499.0, "Invoice #1042"))</code></pre>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 UPI Pay &bull; Built by <a href="https://rohitkumarranjan.in">Rohit Kumar Ranjan</a> &bull; <a href="/about">About</a> &bull; <a href="/contact">Contact</a> &bull; <a href="/privacy">Privacy Policy</a> &bull; <a href="/llms.txt">Agent Instructions (llms.txt)</a></p>
+      </footer>
+    </div>
+
+    <script>
+      function generateApiKey() {
+        const rand = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+          .map(b => b.toString(16).padStart(2, '0')).join('');
+        const key = 'upk_live_' + rand;
+        document.getElementById('apiKeyField').value = key;
+        localStorage.setItem('upi_pay_developer_key', key);
+        document.getElementById('keyStatus').textContent = 'Key generated and stored locally in browser session.';
+      }
+
+      function updateSandbox() {
+        const upi = document.getElementById('sbUpi').value.trim() || 'merchant@okaxis';
+        const amt = document.getElementById('sbAmount').value.trim();
+        const note = document.getElementById('sbNote').value.trim();
+
+        let uri = 'upi://pay?pa=' + encodeURIComponent(upi);
+        if (amt) uri += '&am=' + encodeURIComponent(parseFloat(amt).toFixed(2));
+        uri += '&cu=INR';
+        if (note) uri += '&tn=' + encodeURIComponent(note);
+
+        document.getElementById('sbUriResult').textContent = uri;
+
+        let web = 'https://upi.rohitkumarranjan.in/pay/' + encodeURIComponent(upi);
+        if (amt) web += '/' + encodeURIComponent(parseFloat(amt).toFixed(2));
+        if (note) web += '/' + encodeURIComponent(note);
+
+        const webEl = document.getElementById('sbWebResult');
+        webEl.textContent = web;
+        webEl.href = web;
+
+        const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(uri);
+        document.getElementById('sbQrImage').src = qrUrl;
+      }
+    </script>
+  </body>
+</html>

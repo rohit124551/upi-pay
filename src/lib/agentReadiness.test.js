@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const handler = require('../../api/entry');
+const cli = require('../../bin/cli');
 
 describe('Agent Readiness & Modern AI-SEO Audit Verification', () => {
   const rootDir = path.resolve(__dirname, '../../');
@@ -33,8 +34,8 @@ describe('Agent Readiness & Modern AI-SEO Audit Verification', () => {
     expect(rootMatch).toBeTruthy();
     const rootContent = rootMatch[1].trim();
     expect(rootContent.length).toBeGreaterThanOrEqual(500);
-    expect(rootContent).toContain('<h1>UPI Pay — Bulk UPI Payouts and Batch Payments Suite</h1>');
-    expect(rootContent).toContain('<h2>Bulk UPI Payouts for Retail Bank Accounts</h2>');
+    expect(rootContent).toContain('<h1>UPI Pay — Bulk UPI Payouts and Dynamic QR Terminal</h1>');
+    expect(rootContent).toContain('<h2>UPI Pay Terminal & Bulk Payouts</h2>');
   });
 
   test('Fix 2 & Fix 3: Markdown negotiation on homepage returns 200, Vary: Accept, and Markdown body', () => {
@@ -86,15 +87,18 @@ describe('Agent Readiness & Modern AI-SEO Audit Verification', () => {
   test('Fix 4: Brand discoverability terms present in public/index.html', () => {
     const indexPath = path.join(rootDir, 'public', 'index.html');
     const indexHtml = fs.readFileSync(indexPath, 'utf-8');
-    expect(indexHtml).toContain('UPI Pay bulk');
-    expect(indexHtml).toContain('UPI Pay batch');
+    expect(indexHtml).toContain('UPI Pay');
+    expect(indexHtml).toContain('UPI Pay Terminal');
+    expect(indexHtml).toContain('Rohit Kumar Ranjan');
   });
 
-  test('Fix 5: llms.txt exists with When to Use This and URL specifications', () => {
+  test('Fix 5: llms.txt exists with When to Use This, CLI instructions, and URL specifications', () => {
     const llmsPath = path.join(rootDir, 'public', 'llms.txt');
     expect(fs.existsSync(llmsPath)).toBe(true);
     const content = fs.readFileSync(llmsPath, 'utf-8');
     expect(content).toContain('## When to Use This');
+    expect(content).toContain('## Official CLI Tool');
+    expect(content).toContain('npx upi-pay');
     expect(content).toContain('## How an Agent Should Call UPI Pay');
     expect(content).toContain('/pay/:upiId/:amount/:desc');
   });
@@ -126,6 +130,41 @@ describe('Agent Readiness & Modern AI-SEO Audit Verification', () => {
     const webApp = data['@graph'].find((item) => item['@type'] === 'WebApplication');
     expect(webApp).toBeTruthy();
     expect(webApp.url).toBe('https://upi.rohitkumarranjan.in/');
-    expect(webApp.keywords).toContain('UPI Pay bulk');
+    expect(webApp.keywords).toContain('UPI Pay');
+    expect(webApp.keywords).toContain('UPI Pay Terminal');
+  });
+
+  test('Ora Requirement: Developer Portal at /developers with API keys, sandbox, and quickstart', () => {
+    const devPath = path.join(rootDir, 'public', 'developers', 'index.html');
+    expect(fs.existsSync(devPath)).toBe(true);
+    const content = fs.readFileSync(devPath, 'utf-8');
+    expect(content.length).toBeGreaterThanOrEqual(1000);
+    expect(content).toContain('UPI Pay Developer Portal');
+    expect(content).toContain('Quickstart Guide');
+    expect(content).toContain('Interactive Dynamic QR Sandbox');
+    expect(content).toContain('API Keys & Client Authentication');
+    expect(content).toContain('Official CLI Tool');
+
+    // Check markdown negotiation for /developers
+    const req = { query: { path: 'developers' }, headers: { accept: 'text/markdown' } };
+    const res = createMockRes();
+    handler(req, res);
+    expect(res.statusCode).toBe(200);
+    expect(res.headers['content-type']).toContain('text/markdown');
+    expect(res.body).toContain('UPI Pay Developer Portal');
+  });
+
+  test('Ora Requirement: CLI tool available with qr, parse, reconcile commands', () => {
+    expect(cli.generateUpiUri).toBeDefined();
+    expect(cli.VPA_REGEX.test('merchant@okaxis')).toBe(true);
+    const uri = cli.generateUpiUri('merchant@okaxis', '499.00', 'Invoice 1042');
+    expect(uri).toContain('upi://pay?pa=merchant%40okaxis');
+    expect(uri).toContain('am=499.00');
+    expect(uri).toContain('tn=Invoice%201042');
+
+    // Check package.json has bin definition
+    const pkg = JSON.parse(fs.readFileSync(path.join(rootDir, 'package.json'), 'utf-8'));
+    expect(pkg.bin).toBeDefined();
+    expect(pkg.bin['upi-pay']).toBe('./bin/cli.js');
   });
 });

@@ -1,20 +1,9 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "build",
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Vary",
-          "value": "Accept"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
+      "src": "/(?<path>.*)",
       "has": [
         {
           "type": "header",
@@ -22,19 +11,50 @@
           "value": ".*text/markdown.*"
         }
       ],
-      "destination": "/api/entry?path=$1"
+      "dest": "/api/entry?path=$path"
     },
     {
-      "source": "/pay/:path*",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "headers": {
+        "Vary": "Accept"
+      },
+      "continue": true
     },
     {
-      "source": "/quickqr",
-      "destination": "/index.html"
+      "handle": "filesystem"
     },
     {
-      "source": "/quick",
-      "destination": "/index.html"
+      "src": "/developers.*",
+      "dest": "/developers/index.html"
+    },
+    {
+      "src": "/about.*",
+      "dest": "/about/index.html"
+    },
+    {
+      "src": "/contact.*",
+      "dest": "/contact/index.html"
+    },
+    {
+      "src": "/privacy.*",
+      "dest": "/privacy/index.html"
+    },
+    {
+      "src": "/pay/.*",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/quickqr",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/quick",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/.*",
+      "status": 404,
+      "dest": "/404.html"
     }
   ]
 }
