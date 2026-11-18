@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const qrcodegen = require('./qrcodegen');
 
 const VERSION = '2.0.1';
 
@@ -85,13 +86,53 @@ function parseArgs(args) {
   return result;
 }
 
-// Simple ASCII QR display helper
+// Visual Terminal QR Code display helper using ANSI half-blocks
 function renderAsciiQr(text) {
   console.log('\n--- Dynamic NPCI UPI QR Code ---');
-  console.log(`Scan with Google Pay, PhonePe, Paytm, or BHIM:\n`);
-  console.log(`[ UPI INTENT URI ]`);
+  console.log('Scan with Google Pay, PhonePe, Paytm, BHIM, or any UPI app:\n');
+
+  try {
+    const qr = qrcodegen.QrCode.encodeText(text, qrcodegen.QrCode.Ecc.MEDIUM);
+    const border = 2;
+    const size = qr.size;
+
+    // ANSI escape codes for high-contrast scannability on all terminals (dark & light):
+    // \x1b[47m = White background (quiet zone and light modules)
+    // \x1b[30m = Black foreground (dark modules)
+    // \x1b[0m  = Reset formatting
+    const BG_WHITE = '\x1b[47m';
+    const FG_BLACK = '\x1b[30m';
+    const RESET = '\x1b[0m';
+
+    // Unicode half-blocks render 2 vertical modules per character cell,
+    // producing a true 1:1 aspect ratio square QR code in standard monospace terminals.
+    for (let y = -border; y < size + border; y += 2) {
+      let line = BG_WHITE + FG_BLACK;
+      for (let x = -border; x < size + border; x++) {
+        const topDark = (x >= 0 && x < size && y >= 0 && y < size) ? qr.getModule(x, y) : false;
+        const bottomY = y + 1;
+        const bottomDark = (x >= 0 && x < size && bottomY >= 0 && bottomY < size) ? qr.getModule(x, bottomY) : false;
+
+        if (topDark && bottomDark) {
+          line += '█';
+        } else if (topDark && !bottomDark) {
+          line += '▀';
+        } else if (!topDark && bottomDark) {
+          line += '▄';
+        } else {
+          line += ' ';
+        }
+      }
+      line += RESET;
+      console.log(line);
+    }
+  } catch (err) {
+    console.error('Note: Unable to render visual QR code:', err.message);
+  }
+
+  console.log('\n[ UPI INTENT URI ]');
   console.log(text);
-  console.log(`\nDirect Browser Link:`);
+  console.log('\nDirect Browser Link:');
   const parts = text.match(/pa=([^&]+)/);
   const upiId = parts ? decodeURIComponent(parts[1]) : '';
   const amMatch = text.match(/am=([^&]+)/);
