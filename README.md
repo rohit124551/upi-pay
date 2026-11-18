@@ -14,6 +14,16 @@
   <a href="https://forms.gle/eynzCQDh8v3Puosx7"><img src="https://img.shields.io/badge/Feedback-Google%20Form-green?style=flat-square" alt="Feedback Form" /></a>
 </p>
 
+<p align="center">
+  <a href="https://www.producthunt.com/products/upi-pay?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-upi-pay" target="_blank" rel="noopener noreferrer">
+    <img alt="UPI Pay - Bulk UPI payouts and dynamic QR for everyday bank accounts | Product Hunt" width="220" height="48" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1315373&theme=light&t=1795010022962" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://launchbuff.com/products/upi-pay-o8n61m" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
+    <img src="https://launchbuff.com/badge-featured-dark.svg" alt="Featured on LaunchBuff" width="154" height="48" />
+  </a>
+</p>
+
 ---
 
 ## 📌 Overview

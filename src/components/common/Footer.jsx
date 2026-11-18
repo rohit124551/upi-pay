@@ -63,6 +63,37 @@ export const Footer = ({ onInfo, className = "" }) => {
         </button>
       </p>
 
+      {/* Featured Badges */}
+      <div className="flex items-center justify-center gap-3 pt-2 pb-1 flex-wrap opacity-85 hover:opacity-100 transition-opacity">
+        <a
+          href="https://www.producthunt.com/products/upi-pay?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-upi-pay"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block transition-transform hover:scale-105"
+        >
+          <img
+            alt="UPI Pay - Product Hunt"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1315373&theme=light&t=1795010022962"
+            className="h-7 w-auto"
+            loading="lazy"
+          />
+        </a>
+        <a
+          href="https://launchbuff.com/products/upi-pay-o8n61m"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Featured on LaunchBuff"
+          className="inline-block transition-transform hover:scale-105"
+        >
+          <img
+            src="https://launchbuff.com/badge-featured-dark.svg"
+            alt="Featured on LaunchBuff"
+            className="h-7 w-auto rounded"
+            loading="lazy"
+          />
+        </a>
+      </div>
+
       {/* 3. Maintainer Credit & GitHub */}
       <p className="mt-0.5 text-[11px] opacity-80 flex items-center justify-center gap-1.5 flex-wrap leading-normal text-muted-foreground">
         <span>Built with ❤️ by</span>
